@@ -31,6 +31,10 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
+# Run target to build and execute the program
+run: $(TARGET)
+	./$(TARGET)
+
 # Clean rule to remove generated files
 clean:
 	rm -rf $(BUILD_DIR) $(TARGET)

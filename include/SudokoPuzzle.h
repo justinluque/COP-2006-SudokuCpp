@@ -3,6 +3,10 @@
 class SudokoPuzzle
 {
 public:
+  SudokoPuzzle();
+
+  SudokoPuzzle(const int (&grid)[9][9]);
+
   void reset();
 
   int getCellValue(int row, int col) const;

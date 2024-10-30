@@ -1,6 +1,7 @@
 #include "SudokoPuzzle.h"
 
 #include <algorithm>
+#include <stdexcept>
 
 // Default constructor
 SudokoPuzzle::SudokoPuzzle()
@@ -27,10 +28,16 @@ void SudokoPuzzle::reset()
 
 int SudokoPuzzle::getCellValue(int row, int col) const
 {
-  return grid[row][col];
+  if (row > 9 || row < 1 || col > 9 || col < 1)
+    throw std::out_of_range("Row or column index is out of range");
+
+  return grid[row - 1][col - 1];
 }
 
 void SudokoPuzzle::setCellValue(int num, int row, int col)
 {
-  grid[row][col] = num;
+  if (row > 9 || row < 1 || col > 9 || col < 1)
+    throw std::out_of_range("Row or column index is out of range");
+
+  grid[row - 1][col - 1] = num;
 }

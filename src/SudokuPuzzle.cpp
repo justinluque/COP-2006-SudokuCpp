@@ -1,16 +1,16 @@
-#include "SudokoPuzzle.h"
+#include "SudokuPuzzle.h"
 
 #include <algorithm>
 #include <stdexcept>
 
 // Default constructor
-SudokoPuzzle::SudokoPuzzle()
+SudokuPuzzle::SudokuPuzzle()
 {
-  SudokoPuzzle::reset();
+  SudokuPuzzle::reset();
 }
 
 // Created for debugging purposes and is only intended to be used for such
-SudokoPuzzle::SudokoPuzzle(const int (&grid)[9][9])
+SudokuPuzzle::SudokuPuzzle(const int (&grid)[9][9])
 {
   for (int i = 0; i < 9; i++)
   {
@@ -21,12 +21,12 @@ SudokoPuzzle::SudokoPuzzle(const int (&grid)[9][9])
   }
 }
 
-void SudokoPuzzle::reset()
+void SudokuPuzzle::reset()
 {
   std::fill(&grid[0][0], &grid[0][0] + 9 * 9, 0);
 }
 
-int SudokoPuzzle::getCellValue(int row, int col) const
+int SudokuPuzzle::getCellValue(int row, int col) const
 {
   if (row > 9 || row < 1 || col > 9 || col < 1)
     throw std::out_of_range("Row or column index is out of range");
@@ -34,7 +34,7 @@ int SudokoPuzzle::getCellValue(int row, int col) const
   return grid[row - 1][col - 1];
 }
 
-void SudokoPuzzle::setCellValue(int num, int row, int col)
+void SudokuPuzzle::setCellValue(int num, int row, int col)
 {
   if (row > 9 || row < 1 || col > 9 || col < 1)
     throw std::out_of_range("Row or column index is out of range");

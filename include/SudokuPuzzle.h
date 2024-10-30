@@ -1,11 +1,11 @@
 #pragma once
 
-class SudokoPuzzle
+class SudokuPuzzle
 {
 public:
-  SudokoPuzzle();
+  SudokuPuzzle();
 
-  SudokoPuzzle(const int (&grid)[9][9]);
+  SudokuPuzzle(const int (&grid)[9][9]);
 
   void reset();
 

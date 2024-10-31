@@ -4,7 +4,7 @@
 
 #include "SudokuPuzzle.h"
 
-void display_puzzle(const SudokuPuzzle *puzzle)
+void display_puzzle(const std::unique_ptr<SudokuPuzzle> &puzzle)
 {
   for (int i = 1; i <= 9; i++)
   {
@@ -29,7 +29,7 @@ int main()
 {
   std::unique_ptr<SudokuPuzzle> emptyPuzzle = std::make_unique<SudokuPuzzle>();
 
-  display_puzzle(emptyPuzzle.get());
+  display_puzzle(emptyPuzzle);
 
   std::cout << '\n';
 
@@ -45,7 +45,7 @@ int main()
       {0, 0, 0, 8, 1, 7, 3, 0, 5},
   });
 
-  display_puzzle(templatePuzzle.get());
+  display_puzzle(templatePuzzle);
 
   return 0;
 }

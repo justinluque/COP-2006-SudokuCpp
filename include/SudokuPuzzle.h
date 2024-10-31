@@ -1,3 +1,4 @@
+#include <initializer_list>
 #pragma once
 
 class SudokuPuzzle
@@ -5,7 +6,7 @@ class SudokuPuzzle
 public:
   SudokuPuzzle();
 
-  SudokuPuzzle(const int (&grid)[9][9]);
+  SudokuPuzzle(std::initializer_list<std::initializer_list<int>> grid);
 
   void reset();
 

@@ -12,7 +12,7 @@ TARGET := Sudoku.exe
 EXAMPLE1_TARGET := Example1.exe
 
 # Compiler flags
-CXXFLAGS := -Wall -I$(INCLUDE_DIR)
+CXXFLAGS := -Wall -I$(INCLUDE_DIR) -lncurses -DNCURSES_STATIC
 
 # Source files and object files
 SRCS := $(wildcard $(SRC_DIR)/*.cpp)
@@ -27,15 +27,15 @@ all: $(TARGET)
 
 # Main target for Sudoku
 $(TARGET): $(OBJS)
-	$(CXX) $(OBJS) -o $(TARGET)
+	$(CXX) $(OBJS) -o $(TARGET) $(CXXFLAGS)
 
 # Example target for creating_class_objects.cpp
 example1: $(DEP_OBJS) $(EXAMPLES_DIR)/creating_class_objects.cpp | $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) $(EXAMPLES_DIR)/creating_class_objects.cpp $(DEP_OBJS) -o $(EXAMPLE1_TARGET)
+	$(CXX) $(EXAMPLES_DIR)/creating_class_objects.cpp $(DEP_OBJS) -o $(EXAMPLE1_TARGET) $(CXXFLAGS) 
 
 # Compilation
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) -c $< -o $@ $(CXXFLAGS)
 
 # Create build directory if it doesn't exist
 $(BUILD_DIR):

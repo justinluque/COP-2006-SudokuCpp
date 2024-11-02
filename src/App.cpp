@@ -26,6 +26,8 @@ App::~App()
 
 void App::run()
 {
+  appState = AppState::RUNNING;
+
   while (appState == AppState::RUNNING)
   {
     displayPuzzle();

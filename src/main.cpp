@@ -1,7 +1,12 @@
 #include <iostream>
 
+#include "App.h"
+
 int main()
 {
-  // TODO: implement user interface
+  App app;
+
+  app.run();
+
   return 0;
 }

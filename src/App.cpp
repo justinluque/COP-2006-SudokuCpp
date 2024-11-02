@@ -134,7 +134,7 @@ void App::solvePuzzle()
 void App::giveHint()
 {
   // TODO: should we just store the solved puzzle? instead of having to re-solve each time to display a hint?
-  // TODO: maybe store once and then store it
+  //       ... maybe solve once and then store it
 }
 
 void App::quit()

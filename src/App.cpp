@@ -63,7 +63,7 @@ void App::displayPuzzle()
 
 void App::handleInput()
 {
-  char key = getch();
+  int key = getch();
   switch (key)
   {
   case CTRL_N:

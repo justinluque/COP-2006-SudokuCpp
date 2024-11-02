@@ -1,5 +1,6 @@
-#include <initializer_list>
 #pragma once
+
+#include <initializer_list>
 
 class SudokuPuzzle
 {

@@ -14,9 +14,7 @@ App::App()
 {
   initializeCurses();
 
-  // TODO: welcome message then generate a puzzle
-
-  generatePuzzle();
+  currentScreen = AppScreen::HOME;
 }
 
 App::~App()
@@ -26,9 +24,9 @@ App::~App()
 
 void App::run()
 {
-  appState = AppState::RUNNING;
+  currentState = AppState::RUNNING;
 
-  while (appState == AppState::RUNNING)
+  while (currentState == AppState::RUNNING)
   {
     displayPuzzle();
     handleInput();
@@ -141,5 +139,5 @@ void App::quit()
 {
   // TODO: are you sure you want to quit?
 
-  appState = AppState::EXITING;
+  currentState = AppState::EXITING;
 }

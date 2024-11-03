@@ -9,6 +9,12 @@ enum class AppState
   EXITING
 };
 
+enum class AppScreen
+{
+  HOME,  // SudokuCpp Title and a choice between an easy, medium, hard, or self-entered puzzle
+  PUZZLE // Displays a puzzle, with all the shortcuts. Switch between cells using arrow keys
+};
+
 class App
 {
 public:
@@ -28,7 +34,9 @@ private:
   void giveHint();       // CTRL_H
   void quit();           // CTRL_Q
 
-  AppState appState;
+  AppState currentState;
+  AppScreen currentScreen;
+
   std::unique_ptr<SudokuPuzzle> currentPuzzle;
   int currentRow;
   int currentCol;

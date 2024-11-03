@@ -28,7 +28,7 @@ void App::run()
 
   while (currentState == AppState::RUNNING)
   {
-    displayPuzzle();
+    displayPuzzle(); // TODO: store puzzle into its own window class, and abstract the update function to some sort of refresh function
     handleInput();
   }
 }
@@ -56,7 +56,7 @@ void App::destroyCurses()
 
 void App::displayPuzzle()
 {
-  // TODO: create window and draw the puzzle.
+  // TODO: abstract this to a PuzzleWindow class
 }
 
 void App::handleInput()

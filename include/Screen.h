@@ -2,11 +2,11 @@
 
 #include "ncurses/ncurses.h"
 
-class Window
+class Screen
 {
 public:
-  Window();
-  ~Window();
+  Screen();
+  ~Screen();
 
   virtual void refresh();
   virtual void handleInput();

@@ -10,6 +10,7 @@ EXAMPLES_DIR := examples
 # Output executable names
 TARGET := Sudoku.exe
 EXAMPLE1_TARGET := Example1.exe
+EXAMPLE2_TARGET := Example2.exe
 
 # Compiler flags
 CXXFLAGS := -Wall -I$(INCLUDE_DIR) -lncurses -DNCURSES_STATIC
@@ -33,6 +34,9 @@ $(TARGET): $(OBJS)
 example1: $(DEP_OBJS) $(EXAMPLES_DIR)/creating_class_objects.cpp | $(BUILD_DIR)
 	$(CXX) $(EXAMPLES_DIR)/creating_class_objects.cpp $(DEP_OBJS) -o $(EXAMPLE1_TARGET) $(CXXFLAGS) 
 
+example2: $(DEP_OBS) $(EXAMPLES_DIR)/curses_menu.cpp | $(BUILD_DIR)
+	$(CXX) $(EXAMPLES_DIR)/curses_menu.cpp $(DEP_OBJS) -o $(EXAMPLE2_TARGET) $(CXXFLAGS)
+
 # Compilation
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
 	$(CXX) -c $< -o $@ $(CXXFLAGS)
@@ -48,9 +52,12 @@ run: $(TARGET)
 run_example1: example1
 	./$(EXAMPLE1_TARGET)
 
+run_example2: example2
+	./$(EXAMPLE2_TARGET)
+
 # Clean rule to remove generated files
 clean:
 	rm -rf $(BUILD_DIR) $(TARGET) $(EXAMPLE1_TARGET)
 
 # Phony targets
-.PHONY: all clean example1
+.PHONY: all clean example1 example2

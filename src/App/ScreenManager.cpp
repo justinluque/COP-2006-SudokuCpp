@@ -5,7 +5,10 @@
 #include "HomeScreen.h"
 #include "PuzzleScreen.h"
 
-ScreenManager::ScreenManager() : currentScreen(std::make_unique<HomeScreen>()) {}
+ScreenManager::ScreenManager()
+{
+  currentScreen = nullptr;
+}
 
 void ScreenManager::refresh()
 {
@@ -22,9 +25,9 @@ void ScreenManager::switchWindow(AppScreen screenType)
   switch (screenType)
   {
   case AppScreen::HOME:
-    currentScreen = std::make_unique<HomeScreen>();
+    currentScreen = std::make_unique<HomeScreen>(shared_from_this());
 
   case AppScreen::PUZZLE:
-    currentScreen = std::make_unique<PuzzleScreen>();
+    currentScreen = std::make_unique<PuzzleScreen>(shared_from_this());
   }
 }

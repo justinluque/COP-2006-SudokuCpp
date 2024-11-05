@@ -7,7 +7,7 @@ class ScreenManager;
 class Screen
 {
 public:
-  Screen(const std::shared_ptr<ScreenManager> &screenManager);
+  Screen(std::shared_ptr<ScreenManager> screenManager);
   virtual ~Screen() = default;
 
   virtual void refresh() = 0;

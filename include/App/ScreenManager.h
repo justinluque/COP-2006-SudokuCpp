@@ -15,7 +15,7 @@ enum class WindowType
   Puzzle
 };
 
-class ScreenManager
+class ScreenManager : public std::enable_shared_from_this<ScreenManager>
 {
 public:
   ScreenManager();

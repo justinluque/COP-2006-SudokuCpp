@@ -7,7 +7,7 @@
 class PuzzleScreen : public Screen
 {
 public:
-  PuzzleScreen(const std::shared_ptr<ScreenManager> &screenManager);
+  PuzzleScreen(std::shared_ptr<ScreenManager> screenManager);
   ~PuzzleScreen() override;
 
   void refresh() override;

@@ -2,6 +2,7 @@
 
 #include <memory>
 #include "SudokuPuzzle.h"
+#include "ScreenManager.h"
 
 enum class AppState
 {
@@ -26,18 +27,12 @@ public:
 private:
   void initializeCurses();
   void destroyCurses();
-  void displayPuzzle();
-  void handleInput();
-  void generatePuzzle(); // CTRL_N
-  void checkPuzzle();    // CTRL_C
-  void solvePuzzle();    // CTRL_S
-  void giveHint();       // CTRL_H
-  void quit();           // CTRL_Q
 
   AppState currentState;
   AppScreen currentScreen;
 
-  std::unique_ptr<SudokuPuzzle> currentPuzzle;
+  std::unique_ptr<ScreenManager> screenManager;
+
   int currentRow;
   int currentCol;
 };

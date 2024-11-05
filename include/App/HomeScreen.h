@@ -7,12 +7,13 @@
 class HomeScreen : public Screen
 {
 public:
-  HomeScreen();
+  HomeScreen(const std::shared_ptr<ScreenManager> &screenManager);
   ~HomeScreen() override;
 
   void refresh() override;
   void handleInput() override;
 
 private:
+  std::shared_ptr<ScreenManager> screenManager;
   WINDOW *window;
 };

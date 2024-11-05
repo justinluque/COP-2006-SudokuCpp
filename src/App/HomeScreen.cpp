@@ -1,6 +1,6 @@
 #include "HomeScreen.h"
 
-HomeScreen::HomeScreen()
+HomeScreen::HomeScreen(const std::shared_ptr<ScreenManager> &screenManager) : Screen(screenManager)
 {
   int maxY, maxX;
   getmaxyx(stdscr, maxX, maxY);

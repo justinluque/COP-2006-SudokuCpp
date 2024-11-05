@@ -25,7 +25,7 @@ private:
   AppState currentState;
   AppScreen currentScreen;
 
-  std::unique_ptr<ScreenManager> screenManager;
+  std::shared_ptr<ScreenManager> screenManager;
 
   int currentRow;
   int currentCol;

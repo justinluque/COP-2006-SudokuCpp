@@ -10,7 +10,7 @@
 #define CTRL_S 19
 #define CTRL_X 24
 
-App::App() : currentScreen(AppScreen::HOME), screenManager(std::make_unique<ScreenManager>())
+App::App() : currentScreen(AppScreen::HOME), screenManager(std::make_shared<ScreenManager>())
 {
   initializeCurses();
 

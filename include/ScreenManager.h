@@ -13,9 +13,10 @@ class ScreenManager
 {
 public:
   ScreenManager();
-  ~ScreenManager();
 
   void refresh();
+  void handleInput();
+
   void switchWindow(WindowType window);
 
 private:

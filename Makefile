@@ -3,7 +3,13 @@ CXX := g++
 
 # Directories
 SRC_DIR := src
+SRC_APP_DIR := src/App
+SRC_SUDOKU_DIR := src/Sudoku
+
 INCLUDE_DIR := include
+INCLUDE_APP_DIR := include/App
+INCLUDE_SUDOKU_DIR := include/Sudoku
+
 BUILD_DIR := build
 EXAMPLES_DIR := examples
 
@@ -13,11 +19,13 @@ EXAMPLE1_TARGET := Example1.exe
 EXAMPLE2_TARGET := Example2.exe
 
 # Compiler flags
-CXXFLAGS := -Wall -I$(INCLUDE_DIR) -lncurses -DNCURSES_STATIC
+CXXFLAGS := -Wall -I$(INCLUDE_DIR) -I$(INCLUDE_APP_DIR) -I$(INCLUDE_SUDOKU_DIR) -lncurses -DNCURSES_STATIC
 
 # Source files and object files
-SRCS := $(wildcard $(SRC_DIR)/*.cpp)
-OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SRCS))
+SRCS := $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_APP_DIR)/*.cpp) $(wildcard $(SRC_SUDOKU_DIR)/*.cpp)
+OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(wildcard $(SRC_DIR)/*.cpp)) \
+        $(patsubst $(SRC_APP_DIR)/%.cpp,$(BUILD_DIR)/App_%.o,$(wildcard $(SRC_APP_DIR)/*.cpp)) \
+        $(patsubst $(SRC_SUDOKU_DIR)/%.cpp,$(BUILD_DIR)/Sudoku_%.o,$(wildcard $(SRC_SUDOKU_DIR)/*.cpp))
 
 # Separate out main.o and the other objects for the example targets
 MAIN_OBJ := $(BUILD_DIR)/main.o
@@ -34,11 +42,18 @@ $(TARGET): $(OBJS)
 example1: $(DEP_OBJS) $(EXAMPLES_DIR)/creating_class_objects.cpp | $(BUILD_DIR)
 	$(CXX) $(EXAMPLES_DIR)/creating_class_objects.cpp $(DEP_OBJS) -o $(EXAMPLE1_TARGET) $(CXXFLAGS) 
 
-example2: $(DEP_OBS) $(EXAMPLES_DIR)/curses_menu.cpp | $(BUILD_DIR)
-	$(CXX) $(EXAMPLES_DIR)/curses_menu.cpp $(DEP_OBJS) -o $(EXAMPLE2_TARGET) $(CXXFLAGS)
+# Example target for curses_interaction.cpp
+example2: $(DEP_OBJS) $(EXAMPLES_DIR)/curses_interaction.cpp | $(BUILD_DIR)
+	$(CXX) $(EXAMPLES_DIR)/curses_interaction.cpp $(DEP_OBJS) -o $(EXAMPLE2_TARGET) $(CXXFLAGS)
 
-# Compilation
+# Compilation rules for each source directory
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
+	$(CXX) -c $< -o $@ $(CXXFLAGS)
+
+$(BUILD_DIR)/App_%.o: $(SRC_APP_DIR)/%.cpp | $(BUILD_DIR)
+	$(CXX) -c $< -o $@ $(CXXFLAGS)
+
+$(BUILD_DIR)/Sudoku_%.o: $(SRC_SUDOKU_DIR)/%.cpp | $(BUILD_DIR)
 	$(CXX) -c $< -o $@ $(CXXFLAGS)
 
 # Create build directory if it doesn't exist

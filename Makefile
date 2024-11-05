@@ -57,7 +57,7 @@ run_example2: example2
 
 # Clean rule to remove generated files
 clean:
-	rm -rf $(BUILD_DIR) $(TARGET) $(EXAMPLE1_TARGET)
+	rm -rf $(BUILD_DIR) $(TARGET) $(EXAMPLE1_TARGET) $(EXAMPLE2_TARGET)
 
 # Phony targets
 .PHONY: all clean example1 example2

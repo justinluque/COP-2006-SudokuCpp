@@ -2,6 +2,7 @@
 
 #include <memory>
 #include "Screen.h"
+#include "App.h"
 
 enum class WindowType
 {
@@ -17,9 +18,8 @@ public:
   void refresh();
   void handleInput();
 
-  void switchWindow(WindowType window);
+  void switchWindow(AppScreen screenType);
 
 private:
-  WindowType currentWindowType;
   std::unique_ptr<Screen> currentScreen;
 };

@@ -17,14 +17,14 @@ void ScreenManager::handleInput()
   currentScreen->handleInput();
 }
 
-void ScreenManager::switchWindow(WindowType windowType)
+void ScreenManager::switchWindow(AppScreen screenType)
 {
-  switch (windowType)
+  switch (screenType)
   {
-  case WindowType::Home:
+  case AppScreen::HOME:
     currentScreen = std::make_unique<HomeScreen>();
 
-  case WindowType::Puzzle:
+  case AppScreen::PUZZLE:
     currentScreen = std::make_unique<PuzzleScreen>();
   }
 }

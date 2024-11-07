@@ -28,8 +28,10 @@ void ScreenManager::switchWindow(AppScreen screenType)
   {
   case AppScreen::HOME:
     currentScreen = std::make_unique<HomeScreen>(shared_from_this());
+    break;
 
   case AppScreen::PUZZLE:
     currentScreen = std::make_unique<PuzzleScreen>(shared_from_this());
+    break;
   }
 }

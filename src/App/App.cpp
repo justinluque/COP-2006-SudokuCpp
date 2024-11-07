@@ -14,8 +14,6 @@ App::App() : currentScreen(AppScreen::HOME), screenManager(std::make_shared<Scre
 {
   initializeCurses();
 
-  currentScreen = AppScreen::HOME;
-
   screenManager->switchWindow(currentScreen);
 }
 

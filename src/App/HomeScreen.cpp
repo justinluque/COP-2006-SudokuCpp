@@ -20,6 +20,9 @@ HomeScreen::~HomeScreen()
   delwin(window);
 }
 
-void HomeScreen::refresh() {}
+void HomeScreen::refresh()
+{
+  wrefresh(window);
+}
 
 void HomeScreen::handleInput() {}

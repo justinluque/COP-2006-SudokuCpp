@@ -26,7 +26,10 @@ PuzzleScreen::~PuzzleScreen()
   refresh();
 }
 
-void PuzzleScreen::refresh() {}
+void PuzzleScreen::refresh()
+{
+  wrefresh(window);
+}
 
 void PuzzleScreen::handleInput() {}
 

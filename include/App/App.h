@@ -3,12 +3,7 @@
 #include <memory>
 #include "SudokuPuzzle.h"
 #include "ScreenManager.h"
-
-enum class AppState
-{
-  RUNNING,
-  EXITING
-};
+#include "Enum.h"
 
 class App
 {

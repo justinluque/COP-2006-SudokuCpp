@@ -4,12 +4,6 @@
 #include "SudokuSolver.h"
 #include "SudokuGenerator.h"
 
-#define CTRL_C 3
-#define CTRL_H 8
-#define CTRL_N 14
-#define CTRL_S 19
-#define CTRL_X 24
-
 App::App() : screenManager(std::make_shared<ScreenManager>())
 {
   initializeCurses();

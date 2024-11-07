@@ -9,6 +9,7 @@ SRC_SUDOKU_DIR := src/Sudoku
 INCLUDE_DIR := include
 INCLUDE_APP_DIR := include/App
 INCLUDE_SUDOKU_DIR := include/Sudoku
+INCLUDE_UTILITY_DIR := include/Utility
 
 BUILD_DIR := build
 EXAMPLES_DIR := examples
@@ -19,7 +20,9 @@ EXAMPLE1_TARGET := Example1.exe
 EXAMPLE2_TARGET := Example2.exe
 
 # Compiler flags
-CXXFLAGS := -Wall -I$(INCLUDE_DIR) -I$(INCLUDE_APP_DIR) -I$(INCLUDE_SUDOKU_DIR) -lncurses -DNCURSES_STATIC
+CXXFLAGS := -Wall -I$(INCLUDE_DIR) -I$(INCLUDE_APP_DIR) \
+						-I$(INCLUDE_SUDOKU_DIR) -I$(INCLUDE_UTILITY_DIR) \
+						-lncurses -DNCURSES_STATIC
 
 # Source files and object files
 SRCS := $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_APP_DIR)/*.cpp) $(wildcard $(SRC_SUDOKU_DIR)/*.cpp)

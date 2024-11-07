@@ -1,5 +1,7 @@
 #include "HomeScreen.h"
 
+#include "Enum.h"
+
 HomeScreen::HomeScreen(std::shared_ptr<ScreenManager> screenManager) : Screen(screenManager)
 {
   int maxY, maxX;

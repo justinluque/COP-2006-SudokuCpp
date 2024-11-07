@@ -10,7 +10,6 @@ HomeScreen::HomeScreen(std::shared_ptr<ScreenManager> screenManager) : Screen(sc
 
   window = newwin(startY, startX, maxY, maxX);
   box(window, 0, 0);
-  refresh();
   wrefresh(window);
 }
 

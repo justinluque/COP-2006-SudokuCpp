@@ -12,12 +12,14 @@ ScreenManager::ScreenManager()
 
 void ScreenManager::refresh()
 {
-  currentScreen->refresh();
+  if (currentScreen)
+    currentScreen->refresh();
 }
 
 void ScreenManager::handleInput()
 {
-  currentScreen->handleInput();
+  if (currentScreen)
+    currentScreen->handleInput();
 }
 
 void ScreenManager::switchWindow(AppScreen screenType)

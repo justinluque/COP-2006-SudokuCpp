@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+
 #include "SudokuPuzzle.h"
 #include "ScreenManager.h"
 #include "Enum.h"

@@ -1,6 +1,7 @@
 #include "App.h"
 
 #include <ncurses/ncurses.h>
+
 #include "SudokuSolver.h"
 #include "SudokuGenerator.h"
 

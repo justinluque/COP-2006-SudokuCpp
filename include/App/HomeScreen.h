@@ -1,9 +1,9 @@
 #pragma once
 
+#include <ncurses/ncurses.h>
+
 #include "Screen.h"
 #include "Enum.h"
-
-#include <ncurses/ncurses.h>
 
 class HomeScreen : public Screen
 {

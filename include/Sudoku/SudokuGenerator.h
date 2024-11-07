@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+
 #include "SudokuPuzzle.h"
 
 class SudokuGenerator

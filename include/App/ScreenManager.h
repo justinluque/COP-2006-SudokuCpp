@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+
 #include "Screen.h"
 #include "Enum.h"
 

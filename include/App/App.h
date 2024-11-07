@@ -23,7 +23,6 @@ private:
   void destroyCurses();
 
   AppState currentState;
-  AppScreen currentScreen;
 
   std::shared_ptr<ScreenManager> screenManager;
 

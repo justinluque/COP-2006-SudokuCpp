@@ -1,3 +1,5 @@
 #include "Screen.h"
 
-Screen::Screen(std::shared_ptr<ScreenManager> screenManager) : screenManager(screenManager) {}
+#include "Enum.h"
+
+Screen::Screen(std::function<void(AppScreen)> switchScreenCallback) : switchScreenCallback(switchScreenCallback) {}

@@ -1,18 +1,18 @@
 #pragma once
 
-#include <memory>
+#include <functional>
 
-class ScreenManager;
+#include "Enum.h"
 
 class Screen
 {
 public:
-  Screen(std::shared_ptr<ScreenManager> screenManager);
+  Screen(std::function<void(AppScreen)> switchScreenCallback);
   virtual ~Screen() = default;
 
   virtual void refresh() = 0;
   virtual void handleInput() = 0;
 
 protected:
-  std::shared_ptr<ScreenManager> screenManager;
+  std::function<void(AppScreen)> switchScreenCallback;
 };

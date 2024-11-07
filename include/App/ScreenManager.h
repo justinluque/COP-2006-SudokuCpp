@@ -4,7 +4,7 @@
 #include "Screen.h"
 #include "Enum.h"
 
-class ScreenManager : public std::enable_shared_from_this<ScreenManager>
+class ScreenManager
 {
 public:
   ScreenManager();

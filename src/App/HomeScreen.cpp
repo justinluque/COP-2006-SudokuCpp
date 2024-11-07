@@ -2,7 +2,7 @@
 
 #include "Enum.h"
 
-HomeScreen::HomeScreen(std::shared_ptr<ScreenManager> screenManager) : Screen(screenManager)
+HomeScreen::HomeScreen(std::function<void(AppScreen)> switchScreenCallback) : Screen(switchScreenCallback), switchScreenCallback(switchScreenCallback)
 {
   int maxY, maxX;
   getmaxyx(stdscr, maxX, maxY);

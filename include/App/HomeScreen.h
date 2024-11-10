@@ -15,6 +15,13 @@ public:
   void handleInput() override;
 
 private:
+  int sizeY, sizeX;
   std::function<void(AppScreen)> switchScreenCallback;
   WINDOW *window;
+
+  void drawMainWindow();
+
+  void drawResizePrompt();
+
+  bool windowIsOutOfBounds();
 };

@@ -18,6 +18,7 @@ EXAMPLES_DIR := examples
 TARGET := Sudoku.exe
 EXAMPLE1_TARGET := Example1.exe
 EXAMPLE2_TARGET := Example2.exe
+EXAMPLE3_TARGET := Example3.exe
 
 # Compiler flags
 CXXFLAGS := -Wall -I$(INCLUDE_DIR) -I$(INCLUDE_APP_DIR) \
@@ -49,6 +50,10 @@ example1: $(DEP_OBJS) $(EXAMPLES_DIR)/creating_class_objects.cpp | $(BUILD_DIR)
 example2: $(DEP_OBJS) $(EXAMPLES_DIR)/curses_interaction.cpp | $(BUILD_DIR)
 	$(CXX) $(EXAMPLES_DIR)/curses_interaction.cpp $(DEP_OBJS) -o $(EXAMPLE2_TARGET) $(CXXFLAGS)
 
+# Example target for using_screens.cpp
+example3: $(DEP_OBJS) $(EXAMPLES_DIR)/using_screens.cpp | $(BUILD_DIR)
+	$(CXX) $(EXAMPLES_DIR)/using_screens.cpp $(DEP_OBJS) -o $(EXAMPLE3_TARGET) $(CXXFLAGS)
+
 # Compilation rules for each source directory
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
 	$(CXX) -c $< -o $@ $(CXXFLAGS)
@@ -73,9 +78,12 @@ run_example1: example1
 run_example2: example2
 	./$(EXAMPLE2_TARGET)
 
+run_example3: example3
+	./$(EXAMPLE3_TARGET)
+
 # Clean rule to remove generated files
 clean:
-	rm -rf $(BUILD_DIR) $(TARGET) $(EXAMPLE1_TARGET) $(EXAMPLE2_TARGET)
+	rm -rf $(BUILD_DIR) $(TARGET) $(EXAMPLE1_TARGET) $(EXAMPLE2_TARGET) $(EXAMPLE3_TARGET)
 
 # Phony targets
-.PHONY: all clean example1 example2
+.PHONY: all clean example1 example2 example3

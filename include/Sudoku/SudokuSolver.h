@@ -13,5 +13,9 @@ public:
 
   static std::unique_ptr<SudokuPuzzle> solveBacktracking(const std::unique_ptr<SudokuPuzzle> &puzzle);
 
-  // any other methods here if you find any
+  static bool isValid(const std::unique_ptr<SudokuPuzzle> &puzzle);
+
+  static bool isFull(const std::unique_ptr<SudokuPuzzle> &puzzle);
+
+  static bool isSolved(const std::unique_ptr<SudokuPuzzle> &puzzle);
 };

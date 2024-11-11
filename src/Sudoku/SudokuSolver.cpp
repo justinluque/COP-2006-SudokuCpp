@@ -14,15 +14,6 @@ std::unique_ptr<SudokuPuzzle> SudokuSolver::solveBacktracking(const std::unique_
   return nullptr;
 }
 
-std::unique_ptr<SudokuPuzzle> SudokuSolver::solveBruteForce(const std::unique_ptr<SudokuPuzzle> &puzzle)
-{
-  std::unique_ptr<SudokuPuzzle> solvedPuzzle = std::make_unique<SudokuPuzzle>(*puzzle);
-
-  // TODO: stuff here
-
-  return solvedPuzzle;
-}
-
 // Really cool solution inspired by neetcode (https://www.youtube.com/watch?v=TjFXEUCMqI8)
 bool SudokuSolver::isValid(const std::unique_ptr<SudokuPuzzle> &puzzle)
 {

@@ -4,8 +4,10 @@
 
 HomeScreen::HomeScreen(std::function<void(AppScreen)> switchScreenCallback) : Screen(switchScreenCallback), switchScreenCallback(switchScreenCallback)
 {
-  sizeY = 5;
-  sizeX = 5;
+  clear();
+  refresh();
+  sizeY = 10;
+  sizeX = 10;
 
   if (windowIsOutOfBounds())
   {
@@ -23,8 +25,6 @@ HomeScreen::HomeScreen(std::function<void(AppScreen)> switchScreenCallback) : Sc
 
 HomeScreen::~HomeScreen()
 {
-  wclear(window);
-  wrefresh(window);
   delwin(window);
 }
 
@@ -42,14 +42,12 @@ void HomeScreen::handleInput()
 
 void HomeScreen::drawMainWindow()
 {
-  wclear(window);
   box(window, 0, 0);
   mvwprintw(window, 1, 1, "MAINWINDOW");
 }
 
 void HomeScreen::drawResizePrompt()
 {
-  wclear(window);
   mvwprintw(window, 0, 0, "Please resize the terminal and restart the program.");
 }
 

@@ -11,7 +11,7 @@ public:
   HomeScreen(std::function<void(AppScreen)> switchScreenCallback);
   ~HomeScreen() override;
 
-  void refresh() override;
+  void refreshScreen() override;
   void handleInput() override;
 
 private:

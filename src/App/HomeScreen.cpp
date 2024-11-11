@@ -28,16 +28,14 @@ HomeScreen::~HomeScreen()
   delwin(window);
 }
 
-void HomeScreen::refresh()
+void HomeScreen::refreshScreen()
 {
   wrefresh(window);
 }
 
 void HomeScreen::handleInput()
 {
-  switch (getch())
-  {
-  }
+  getch();
 }
 
 void HomeScreen::drawMainWindow()

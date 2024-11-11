@@ -14,7 +14,7 @@ ScreenManager::ScreenManager()
 void ScreenManager::refresh()
 {
   if (currentScreen)
-    currentScreen->refresh();
+    currentScreen->refreshScreen();
 }
 
 void ScreenManager::handleInput()

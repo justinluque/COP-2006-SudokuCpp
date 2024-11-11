@@ -16,17 +16,17 @@ PuzzleScreen::PuzzleScreen(std::function<void(AppScreen)> switchScreenCallback) 
 
   window = newwin(startY, startX, maxY, maxX);
   box(window, 0, 0);
-  refresh();
+  refreshScreen();
   wrefresh(window);
 }
 
 PuzzleScreen::~PuzzleScreen()
 {
   delwin(window);
-  refresh();
+  refreshScreen();
 }
 
-void PuzzleScreen::refresh()
+void PuzzleScreen::refreshScreen()
 {
   wrefresh(window);
 }

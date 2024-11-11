@@ -10,7 +10,7 @@ int main()
   keypad(stdscr, true);
 
   HomeScreen screen([](AppScreen) {});
-  screen.refresh();
+  screen.refreshScreen();
   screen.handleInput();
 
   return 0;

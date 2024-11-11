@@ -40,16 +40,22 @@ void SudokuPuzzle::reset()
 
 int SudokuPuzzle::getCellValue(int row, int col) const
 {
-  if (row > 8 || row < 0 || col > 8 || col < 0)
-    throw std::out_of_range("Row or column index is out of range");
+  if (row > 8 || row < 0)
+    throw std::out_of_range("Row index is out of range: " + std::to_string(row));
+
+  if (col > 8 || col < 0)
+    throw std::out_of_range("Column index is out of range: " + std::to_string(col));
 
   return grid[row][col];
 }
 
 void SudokuPuzzle::setCellValue(int num, int row, int col)
 {
-  if (row > 8 || row < 0 || col > 8 || col < 0)
-    throw std::out_of_range("Row or column index is out of range");
+  if (row > 8 || row < 0)
+    throw std::out_of_range("Row index is out of range: " + std::to_string(row));
+
+  if (col > 8 || col < 0)
+    throw std::out_of_range("Column index is out of range: " + std::to_string(col));
 
   grid[row][col] = num;
 }

@@ -38,7 +38,10 @@ int main()
   display_puzzle(startingPuzzle);
 
   std::cout << "\nSolved Puzzle: \n";
-  display_puzzle(solvedPuzzle);
+  if (solvedPuzzle)
+    display_puzzle(solvedPuzzle);
+  else
+    std::cout << "Puzzle could not be solved.\n";
 
   return 0;
 }

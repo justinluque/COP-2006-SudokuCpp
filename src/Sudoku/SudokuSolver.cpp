@@ -19,7 +19,7 @@ bool SudokuSolver::isValid(const std::unique_ptr<SudokuPuzzle> &puzzle)
 {
   // "hashmaps" to track number of occurences of nums 1-9
   int rows[9][9] = {0};
-  int colmns[9][9] = {0};
+  int columns[9][9] = {0};
   int subgrids[3][3][9] = {0};
 
   for (int row = 0; row < 9; row++)
@@ -31,7 +31,7 @@ bool SudokuSolver::isValid(const std::unique_ptr<SudokuPuzzle> &puzzle)
       if (value == 0)
         continue;
 
-      if (rows[row][value]++ || colmns[value][col]++ || subgrids[row / 3][col / 3][value]++)
+      if (rows[row][value]++ || columns[value][col]++ || subgrids[row / 3][col / 3][value]++)
         return false;
     }
   }

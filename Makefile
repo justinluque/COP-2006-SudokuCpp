@@ -5,6 +5,7 @@ CXX := g++
 SRC_DIR := src
 SRC_APP_DIR := src/App
 SRC_SUDOKU_DIR := src/Sudoku
+SRC_UTILITY_DIR := src/Utility
 
 INCLUDE_DIR := include
 INCLUDE_APP_DIR := include/App
@@ -30,7 +31,8 @@ CXXFLAGS := -Wall -I$(INCLUDE_DIR) -I$(INCLUDE_APP_DIR) \
 SRCS := $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_APP_DIR)/*.cpp) $(wildcard $(SRC_SUDOKU_DIR)/*.cpp)
 OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(wildcard $(SRC_DIR)/*.cpp)) \
         $(patsubst $(SRC_APP_DIR)/%.cpp,$(BUILD_DIR)/App_%.o,$(wildcard $(SRC_APP_DIR)/*.cpp)) \
-        $(patsubst $(SRC_SUDOKU_DIR)/%.cpp,$(BUILD_DIR)/Sudoku_%.o,$(wildcard $(SRC_SUDOKU_DIR)/*.cpp))
+        $(patsubst $(SRC_SUDOKU_DIR)/%.cpp,$(BUILD_DIR)/Sudoku_%.o,$(wildcard $(SRC_SUDOKU_DIR)/*.cpp)) \
+				$(patsubst $(SRC_UTILITY_DIR)/%.cpp,$(BUILD_DIR)/Utility_%.o,$(wildcard $(SRC_UTILITY_DIR)/*.cpp))
 
 # Separate out main.o and the other objects for the example targets
 MAIN_OBJ := $(BUILD_DIR)/main.o
@@ -67,6 +69,9 @@ $(BUILD_DIR)/App_%.o: $(SRC_APP_DIR)/%.cpp | $(BUILD_DIR)
 	$(CXX) -c $< -o $@ $(CXXFLAGS)
 
 $(BUILD_DIR)/Sudoku_%.o: $(SRC_SUDOKU_DIR)/%.cpp | $(BUILD_DIR)
+	$(CXX) -c $< -o $@ $(CXXFLAGS)
+
+$(BUILD_DIR)/Utility_%.o: $(SRC_UTILITY_DIR)/%.cpp | $(BUILD_DIR)
 	$(CXX) -c $< -o $@ $(CXXFLAGS)
 
 # Create build directory if it doesn't exist

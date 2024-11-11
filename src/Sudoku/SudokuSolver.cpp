@@ -68,7 +68,7 @@ bool SudokuSolver::isCorrectPlacement(const std::unique_ptr<SudokuPuzzle> &puzzl
 
 bool SudokuSolver::recursiveAlgorithm(std::unique_ptr<SudokuPuzzle> &puzzle, int row, int col)
 {
-  if (row > 7 && col > 8)
+  if (row == 9 && col == 0)
   {
     return true;
   }
@@ -81,7 +81,7 @@ bool SudokuSolver::recursiveAlgorithm(std::unique_ptr<SudokuPuzzle> &puzzle, int
 
   if (puzzle->getCellValue(row, col) > 0)
   {
-    return recursiveAlgorithm(puzzle, row, ++col);
+    return recursiveAlgorithm(puzzle, row, col + 1);
   }
 
   for (int iterator = 1; iterator <= 9; iterator++)
@@ -89,7 +89,7 @@ bool SudokuSolver::recursiveAlgorithm(std::unique_ptr<SudokuPuzzle> &puzzle, int
     if (isCorrectPlacement(puzzle, iterator, row, col))
     {
       puzzle->setCellValue(iterator, row, col);
-      if (recursiveAlgorithm(puzzle, row, ++col))
+      if (recursiveAlgorithm(puzzle, row, col + 1))
       {
         return true;
       }

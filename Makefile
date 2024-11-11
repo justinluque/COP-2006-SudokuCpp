@@ -28,6 +28,9 @@ CXXFLAGS := -Wall -I$(INCLUDE_DIR) -I$(INCLUDE_APP_DIR) \
 						-I$(INCLUDE_SUDOKU_DIR) -I$(INCLUDE_UTILITY_DIR) \
 						-lncurses -DNCURSES_STATIC
 
+# Debug-specific flags
+DEBUG_FLAGS := -g -O0  # Include debugging symbols, disable optimization
+
 # Source files and object files
 SRCS := $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_APP_DIR)/*.cpp) $(wildcard $(SRC_SUDOKU_DIR)/*.cpp)
 OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(wildcard $(SRC_DIR)/*.cpp)) \
@@ -45,6 +48,10 @@ all: $(TARGET)
 # Main target for Sudoku
 $(TARGET): $(OBJS)
 	$(CXX) $(OBJS) -o $(TARGET) $(CXXFLAGS)
+
+# Debug target
+debug: CXXFLAGS += $(DEBUG_FLAGS)
+debug: $(TARGET)
 
 # Example target for creating_class_objects.cpp
 example1: $(DEP_OBJS) $(EXAMPLES_DIR)/creating_class_objects.cpp | $(BUILD_DIR)
@@ -109,4 +116,4 @@ clean:
 	rm -rf $(BUILD_DIR) $(TARGET) $(EXAMPLE1_TARGET) $(EXAMPLE2_TARGET) $(EXAMPLE3_TARGET) $(EXAMPLE4_TARGET) $(EXAMPLE5_TARGET)
 
 # Phony targets
-.PHONY: all clean example1 example2 example3 example4 example5
+.PHONY: all clean example1 example2 example3 example4 example5 debug

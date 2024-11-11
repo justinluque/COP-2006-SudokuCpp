@@ -11,3 +11,7 @@
 - https://www.youtube.com/watch?v=3YiPdibiQHA
 
   Used to create a menu TUI system with ncurses
+
+- https://www.youtube.com/watch?v=TjFXEUCMqI8
+
+  Cool one pass solution to checking whether a sudoku puzzle is valid

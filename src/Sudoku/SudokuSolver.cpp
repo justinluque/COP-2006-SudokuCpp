@@ -6,9 +6,12 @@ std::unique_ptr<SudokuPuzzle> SudokuSolver::solveBacktracking(const std::unique_
 {
   std::unique_ptr<SudokuPuzzle> solvedPuzzle = std::make_unique<SudokuPuzzle>(*puzzle);
 
-  // TODO: stuff here
+  if (recursiveAlgorithm(solvedPuzzle, 0, 0))
+  {
+    return solvedPuzzle;
+  }
 
-  return solvedPuzzle;
+  return nullptr;
 }
 
 std::unique_ptr<SudokuPuzzle> SudokuSolver::solveBruteForce(const std::unique_ptr<SudokuPuzzle> &puzzle)
@@ -25,7 +28,7 @@ bool SudokuSolver::isValid(const std::unique_ptr<SudokuPuzzle> &puzzle)
 {
   // "hashmaps" to track number of occurences of nums 1-9
   int rows[9][9] = {0};
-  int columns[9][9] = {0};
+  int colmns[9][9] = {0};
   int subgrids[3][3][9] = {0};
 
   for (int row = 0; row < 9; row++)
@@ -37,7 +40,7 @@ bool SudokuSolver::isValid(const std::unique_ptr<SudokuPuzzle> &puzzle)
       if (value == 0)
         continue;
 
-      if (rows[row][value]++ || columns[value][col]++ || subgrids[row / 3][col / 3][value]++)
+      if (rows[row][value]++ || colmns[value][col]++ || subgrids[row / 3][col / 3][value]++)
         return false;
     }
   }
@@ -61,4 +64,46 @@ bool SudokuSolver::isFull(const std::unique_ptr<SudokuPuzzle> &puzzle)
 bool SudokuSolver::isSolved(const std::unique_ptr<SudokuPuzzle> &puzzle)
 {
   return isValid(puzzle) && isFull(puzzle);
+}
+
+bool SudokuSolver::isCorrectPlacement(const std::unique_ptr<SudokuPuzzle> &puzzle, int num, int row, int col)
+{
+  std::unique_ptr<SudokuPuzzle> tempPuzzle = std::make_unique<SudokuPuzzle>(*puzzle);
+
+  tempPuzzle->setCellValue(num, row, col);
+
+  return isValid(tempPuzzle);
+}
+
+bool SudokuSolver::recursiveAlgorithm(std::unique_ptr<SudokuPuzzle> &puzzle, int row, int col)
+{
+  if (row > 7 && col > 8)
+  {
+    return true;
+  }
+
+  if (col > 8)
+  {
+    row++;
+    col = 0;
+  }
+
+  if (puzzle->getCellValue(row, col) > 0)
+  {
+    return recursiveAlgorithm(puzzle, row, ++col);
+  }
+
+  for (int iterator = 1; iterator <= 9; iterator++)
+  {
+    if (isCorrectPlacement(puzzle, iterator, row, col))
+    {
+      puzzle->setCellValue(iterator, row, col);
+      if (recursiveAlgorithm(puzzle, row, ++col))
+      {
+        return true;
+      }
+    }
+    puzzle->setCellValue(0, row, col);
+  }
+  return false;
 }

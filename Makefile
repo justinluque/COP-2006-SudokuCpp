@@ -73,6 +73,8 @@ $(BUILD_DIR)/Sudoku_%.o: $(SRC_SUDOKU_DIR)/%.cpp | $(BUILD_DIR)
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
+examples: example1 example2 example3 example4
+
 # Run targets to build and execute programs
 run: $(TARGET)
 	./$(TARGET)

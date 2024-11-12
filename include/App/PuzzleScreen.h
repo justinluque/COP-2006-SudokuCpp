@@ -1,7 +1,10 @@
 #pragma once
 
+#include <memory>
+
 #include <ncurses/ncurses.h>
 
+#include "SudokuPuzzle.h"
 #include "Screen.h"
 #include "Enum.h"
 
@@ -15,6 +18,18 @@ public:
   void handleInput() override;
 
 private:
-  std::function<void(ScreenAction)> screenActionCallback;
+  int sizeY, sizeX;
+
   WINDOW *window;
+
+  std::function<void(ScreenAction)> screenActionCallback;
+  std::unique_ptr<SudokuPuzzle> currentPuzzle;
+
+  void drawMainWindow();
+
+  void drawConstantMainWindow();
+
+  void highlightOn();
+
+  void highlightOff();
 };

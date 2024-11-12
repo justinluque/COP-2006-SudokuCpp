@@ -8,16 +8,31 @@
 
 PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback) : Screen(screenActionCallback), screenActionCallback(screenActionCallback)
 {
-  int maxY, maxX;
-  getmaxyx(stdscr, maxX, maxY);
+  // Clear previous screen
+  clear();
+  refresh();
 
-  int startY = maxY / 4;
-  int startX = maxX / 4;
+  // Set the size of our main window
+  sizeY = 30;
+  sizeX = 60;
 
-  window = newwin(startY, startX, maxY, maxX);
-  box(window, 0, 0);
-  refreshScreen();
-  wrefresh(window);
+  // Get screen dimensions
+  int screenY = getmaxy(stdscr);
+  int screenX = getmaxx(stdscr);
+
+  // Calculate top-left corner coordinates to center the window
+  int startY = (screenY - sizeY) / 2;
+  int startX = (screenX - sizeX) / 2;
+
+  // Draw the main window if possible
+
+  window = newwin(screenY, screenX, 0, 0); // Full-screen window for resize prompt
+
+  keypad(window, true); /// Enable keypad inputs for our window
+
+  drawConstantMainWindow();
+
+  drawMainWindow();
 }
 
 PuzzleScreen::~PuzzleScreen()
@@ -85,3 +100,21 @@ void PuzzleScreen::handleInput() {}
 //     break;
 //   }
 // }
+
+void PuzzleScreen::drawConstantMainWindow()
+{
+  box(window, 0, 0);
+}
+
+void PuzzleScreen::drawMainWindow()
+{
+  // TODO: draw current puzzle
+}
+
+void PuzzleScreen::highlightOn()
+{
+}
+
+void PuzzleScreen::highlightOff()
+{
+}

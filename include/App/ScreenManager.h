@@ -8,7 +8,7 @@
 class ScreenManager
 {
 public:
-  ScreenManager();
+  ScreenManager(AppState &appState);
 
   void refreshCurrentScreen();
   void handleInput();
@@ -18,5 +18,6 @@ public:
   void doScreenAction(ScreenAction screenAction);
 
 private:
+  AppState &mainAppState;
   std::unique_ptr<Screen> currentScreen;
 };

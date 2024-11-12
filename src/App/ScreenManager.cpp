@@ -6,7 +6,7 @@
 #include "HomeScreen.h"
 #include "PuzzleScreen.h"
 
-ScreenManager::ScreenManager()
+ScreenManager::ScreenManager(AppState &appState) : mainAppState(appState)
 {
   currentScreen = nullptr;
 }
@@ -28,7 +28,8 @@ void ScreenManager::doScreenAction(ScreenAction screenAction)
   switch (screenAction)
   {
   case ScreenAction::QUIT:
-    break; // TODO:
+    mainAppState = AppState::EXITING;
+    break;
 
   // TODO: complete puzzle screen
   case ScreenAction::GENERATE_EASY:

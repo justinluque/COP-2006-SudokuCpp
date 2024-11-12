@@ -1,14 +1,18 @@
 #include "App.h"
 
+#include <exception>
+
 #include <ncurses/ncurses.h>
 
 #include "SudokuSolver.h"
 #include "SudokuGenerator.h"
 #include "Macro.h"
 
-App::App() : screenManager(std::make_shared<ScreenManager>())
+App::App() : screenManager(nullptr)
 {
   initializeCurses();
+
+  screenManager = std::make_shared<ScreenManager>(currentState);
 
   screenManager->switchWindow(AppScreen::HOME);
 }

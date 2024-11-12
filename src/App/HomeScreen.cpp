@@ -54,7 +54,24 @@ void HomeScreen::handleInput()
 void HomeScreen::drawMainWindow()
 {
   box(window, 0, 0);
-  mvwprintw(window, 1, 1, "MAINWINDOW");
+
+  int ascii_width = 50;
+
+  int ascii_start = (sizeX - ascii_width) / 2;
+
+  // Print the ASCII art inside the window
+  mvwprintw(window, 1, ascii_start, "                                                 ");
+  mvwprintw(window, 2, ascii_start, " _____         _       _         _____           ");
+  mvwprintw(window, 3, ascii_start, "|   __| _ _  _| | ___ | |_  _ _ |     | ___  ___ ");
+  mvwprintw(window, 4, ascii_start, "|__   || | || . || . || '_|| | ||   --|| . || . |");
+  mvwprintw(window, 5, ascii_start, "|_____||___||___||___||_,_||___||_____||  _||  _|");
+  mvwprintw(window, 6, ascii_start, "                                       |_|  |_|  ");
+
+  int optionsStart = sizeY * 9 / 16;
+  mvwprintw(window, optionsStart, 2, "Generate easy puzzle");
+  mvwprintw(window, optionsStart + 2, 2, "Generate medium puzzle");
+  mvwprintw(window, optionsStart + 4, 2, "Generate hard puzzle");
+  mvwprintw(window, optionsStart + 6, 2, "Enter custom puzzle");
 }
 
 void HomeScreen::drawResizePrompt()

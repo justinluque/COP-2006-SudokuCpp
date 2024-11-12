@@ -1,14 +1,6 @@
 # Compiler
 CXX := g++
 
-# Compiler flags
-CXXFLAGS := -Wall -I$(INCLUDE_DIR) -I$(INCLUDE_APP_DIR) \
-						-I$(INCLUDE_SUDOKU_DIR) -I$(INCLUDE_UTILITY_DIR) \
-						-lncurses -DNCURSES_STATIC
-
-# Debug-specific flags
-DEBUG_FLAGS := -g -O0  # Include debugging symbols, disable optimization
-
 # Directories
 SRC_DIR := src
 SRC_APP_DIR := src/App
@@ -30,6 +22,14 @@ EXAMPLE2_TARGET := Example2.exe
 EXAMPLE3_TARGET := Example3.exe
 EXAMPLE4_TARGET := Example4.exe
 EXAMPLE5_TARGET := Example5.exe
+
+# Compiler flags
+CXXFLAGS := -Wall -I$(INCLUDE_DIR) -I$(INCLUDE_APP_DIR) \
+						-I$(INCLUDE_SUDOKU_DIR) -I$(INCLUDE_UTILITY_DIR) \
+						-lncurses -DNCURSES_STATIC
+
+# Debug-specific flags
+DEBUG_FLAGS := -g -O0  # Include debugging symbols, disable optimization
 
 # Source files and object files
 SRCS := $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_APP_DIR)/*.cpp) $(wildcard $(SRC_SUDOKU_DIR)/*.cpp)

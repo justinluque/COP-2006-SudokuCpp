@@ -6,14 +6,24 @@
 #include "Enum.h"
 #include "Macro.h"
 
-constexpr std::array<std::string_view, 4> options = {
-    "Generate easy puzzle",
-    "Generate medium puzzle",
-    "Generate hard puzzle",
-    "Enter custom puzzle",
-};
+namespace
+{
+  constexpr std::array<std::string_view, static_cast<size_t>(HomeScreenOption::COUNT)>
+      options = {
+          "Generate easy puzzle",
+          "Generate medium puzzle",
+          "Generate hard puzzle",
+          "Enter custom puzzle",
+          "Quit",
+  };
 
-HomeScreen::HomeScreen(std::function<void(ScreenAction)> screenActionCallback) : Screen(screenActionCallback), currentOption(0), screenActionCallback(screenActionCallback)
+  std::string_view HomeScreenOptionToString(HomeScreenOption option)
+  {
+    return options[static_cast<size_t>(option)];
+  }
+}
+
+HomeScreen::HomeScreen(std::function<void(ScreenAction)> screenActionCallback) : Screen(screenActionCallback), selectedOption(HomeScreenOption::GENERATE_EASY), screenActionCallback(screenActionCallback)
 {
   // Clear previous screen
   clear();
@@ -67,27 +77,53 @@ void HomeScreen::refreshScreen()
 void HomeScreen::handleInput()
 {
   int key = wgetch(window);
+  size_t optionCode = static_cast<int>(selectedOption);
 
   switch (key)
   {
   case KEY_UP:
-    if (currentOption == 0)
-      currentOption = 3;
+    if (optionCode == 0)
+      optionCode = static_cast<int>(HomeScreenOption::COUNT) - 1;
     else
-      currentOption--;
+      optionCode--;
+    selectedOption = static_cast<HomeScreenOption>(optionCode);
     break;
 
   case KEY_DOWN:
-    currentOption = (currentOption + 1) % 4;
+    optionCode = (optionCode + 1) % static_cast<size_t>(HomeScreenOption::COUNT);
+    selectedOption = static_cast<HomeScreenOption>(optionCode);
     break;
 
   case CTRL_X:
-    endwin(); // TODO: define quit behavior.
+    screenActionCallback(ScreenAction::QUIT);
     break;
 
-  case KEY_ENTER:
-    break; // TODO: define pick behavior.
-           //        likely will create an action function instead of passing many different bindings
+  case ENTER:
+    switch (selectedOption) // Perform an action depending on the selected option
+    {
+    case HomeScreenOption::GENERATE_EASY:
+      screenActionCallback(ScreenAction::GENERATE_EASY);
+      break;
+
+    case HomeScreenOption::GENERATE_MEDIUM:
+      screenActionCallback(ScreenAction::GENERATE_MEDIUM);
+      break;
+
+    case HomeScreenOption::GENERATE_HARD:
+      screenActionCallback(ScreenAction::GENERATE_HARD);
+      break;
+
+    case HomeScreenOption::ENTER_CUSTOM:
+      screenActionCallback(ScreenAction::ENTER_CUSTOM);
+      break;
+
+    case HomeScreenOption::QUIT:
+      screenActionCallback(ScreenAction::QUIT);
+      break;
+
+    case HomeScreenOption::COUNT:
+      break;
+    }
   }
 }
 
@@ -96,12 +132,13 @@ void HomeScreen::drawMainWindow()
 
   int optionsStartY = sizeY * 9 / 16;
 
-  for (size_t i = 0; i < 4; i++)
+  for (size_t optionIterator = 0; optionIterator < static_cast<size_t>(HomeScreenOption::COUNT); optionIterator++)
   {
-    if (i == currentOption)
+    HomeScreenOption currentOption = static_cast<HomeScreenOption>(optionIterator);
+    if (currentOption == selectedOption)
       highlightOn();
-    mvwprintw(window, optionsStartY + i * 2, (sizeX - options[i].length()) / 2, options[i].data());
-    if (i == currentOption)
+    mvwprintw(window, optionsStartY + optionIterator * 2, (sizeX - options[optionIterator].length()) / 2, HomeScreenOptionToString(currentOption).data());
+    if (currentOption == selectedOption)
       highlightOff();
   }
 

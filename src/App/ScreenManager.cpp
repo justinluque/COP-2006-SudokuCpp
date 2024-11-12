@@ -44,8 +44,11 @@ void ScreenManager::doScreenAction(ScreenAction screenAction)
     switchWindow(AppScreen::PUZZLE);
     break;
 
-  case ScreenAction::INPUT_CUSTOM:
+  case ScreenAction::ENTER_CUSTOM:
     switchWindow(AppScreen::PUZZLE);
+    break;
+
+  case ScreenAction::COUNT:
     break;
   }
 }

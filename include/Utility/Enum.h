@@ -14,9 +14,20 @@ enum class AppState
 
 enum class ScreenAction
 {
-  QUIT,
   GENERATE_EASY,
   GENERATE_MEDIUM,
   GENERATE_HARD,
-  INPUT_CUSTOM
+  ENTER_CUSTOM,
+  QUIT,
+  COUNT
+};
+
+enum class HomeScreenOption
+{
+  GENERATE_EASY,
+  GENERATE_MEDIUM,
+  GENERATE_HARD,
+  ENTER_CUSTOM,
+  QUIT,
+  COUNT
 };

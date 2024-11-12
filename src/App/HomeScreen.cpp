@@ -9,18 +9,26 @@ HomeScreen::HomeScreen(std::function<void(AppScreen)> switchScreenCallback) : Sc
   refresh();
 
   // Set the size of our main window
-  sizeY = 10;
-  sizeX = 10;
+  sizeY = 30;
+  sizeX = 60;
+
+  // Get screen dimensions
+  int screenY = getmaxy(stdscr);
+  int screenX = getmaxx(stdscr);
+
+  // Calculate top-left corner coordinates to center the window
+  int startY = (screenY - sizeY) / 2;
+  int startX = (screenX - sizeX) / 2;
 
   // Draw the main window if possible
   if (windowIsOutOfBounds())
   {
-    window = newwin(getmaxy(stdscr), getmaxx(stdscr), 0, 0);
+    window = newwin(screenY, screenX, 0, 0); // Full-screen window for resize prompt
     drawResizePrompt();
   }
   else
   {
-    window = newwin(sizeY, sizeX, 0, 0);
+    window = newwin(sizeY, sizeX, startY, startX); // Centered window
     drawMainWindow();
   }
 

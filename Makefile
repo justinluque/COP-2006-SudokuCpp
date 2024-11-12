@@ -74,6 +74,26 @@ example4: $(DEP_OBJS) $(EXAMPLES_DIR)/check_term_size.cpp | $(BUILD_DIR)
 example5: $(DEP_OBJS) $(EXAMPLES_DIR)/solving_puzzles.cpp | $(BUILD_DIR)
 	$(CXX) $(EXAMPLES_DIR)/solving_puzzles.cpp $(DEP_OBJS) -o $(EXAMPLE5_TARGET) $(CXXFLAGS)
 
+# Example target for creating_class_objects.cpp
+debug_example1: $(DEP_OBJS) $(EXAMPLES_DIR)/creating_class_objects.cpp | $(BUILD_DIR)
+	$(CXX) $(EXAMPLES_DIR)/creating_class_objects.cpp $(DEP_OBJS) -o $(EXAMPLE1_TARGET) $(CXXFLAGS) $(DEBUG_FLAGS)
+
+# Example target for curses_interaction.cpp
+debug_example2: $(DEP_OBJS) $(EXAMPLES_DIR)/curses_interaction.cpp | $(BUILD_DIR)
+	$(CXX) $(EXAMPLES_DIR)/curses_interaction.cpp $(DEP_OBJS) -o $(EXAMPLE2_TARGET) $(CXXFLAGS) $(DEBUG_FLAGS)
+
+# Example target for using_screens.cpp
+debug_example3: $(DEP_OBJS) $(EXAMPLES_DIR)/using_screens.cpp | $(BUILD_DIR)
+	$(CXX) $(EXAMPLES_DIR)/using_screens.cpp $(DEP_OBJS) -o $(EXAMPLE3_TARGET) $(CXXFLAGS) $(DEBUG_FLAGS)
+
+# Example target for using_screens.cpp
+debug_example4: $(DEP_OBJS) $(EXAMPLES_DIR)/check_term_size.cpp | $(BUILD_DIR)
+	$(CXX) $(EXAMPLES_DIR)/check_term_size.cpp $(DEP_OBJS) -o $(EXAMPLE4_TARGET) $(CXXFLAGS) $(DEBUG_FLAGS)
+
+# Example target for solving_puzzles.cpp
+debug_example5: $(DEP_OBJS) $(EXAMPLES_DIR)/solving_puzzles.cpp | $(BUILD_DIR)
+	$(CXX) $(EXAMPLES_DIR)/solving_puzzles.cpp $(DEP_OBJS) -o $(EXAMPLE5_TARGET) $(CXXFLAGS) $(DEBUG_FLAGS)
+
 # Compilation rules for each source directory
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
 	$(CXX) -c $< -o $@ $(CXXFLAGS)
@@ -117,4 +137,4 @@ clean:
 	rm -rf $(BUILD_DIR) $(TARGET) $(EXAMPLE1_TARGET) $(EXAMPLE2_TARGET) $(EXAMPLE3_TARGET) $(EXAMPLE4_TARGET) $(EXAMPLE5_TARGET)
 
 # Phony targets
-.PHONY: all clean example1 example2 example3 example4 example5 debug
+.PHONY: all clean example1 example2 example3 example4 example5 debug debuf_flags debug_example1 debug_example2 debug_example3 debug_example4 debug_example5

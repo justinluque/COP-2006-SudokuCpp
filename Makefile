@@ -24,9 +24,10 @@ EXAMPLE4_TARGET := Example4.exe
 EXAMPLE5_TARGET := Example5.exe
 
 # Compiler flags
-CXXFLAGS := -Wall -I$(INCLUDE_DIR) -I$(INCLUDE_APP_DIR) \
+CXXFLAGS := -Wall -Wextra -pedantic \
+						-I$(INCLUDE_DIR) -I$(INCLUDE_APP_DIR) \
 						-I$(INCLUDE_SUDOKU_DIR) -I$(INCLUDE_UTILITY_DIR) \
-						-lncurses -DNCURSES_STATIC
+						-lncurses -DNCURSES_STATIC -O2
 
 # Debug-specific flags
 DEBUG_FLAGS := -g -O0  # Include debugging symbols, disable optimization

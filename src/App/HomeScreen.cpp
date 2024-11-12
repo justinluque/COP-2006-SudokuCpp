@@ -13,7 +13,7 @@ constexpr std::array<std::string_view, 4> options = {
     "Enter custom puzzle",
 };
 
-HomeScreen::HomeScreen(std::function<void(AppScreen)> switchScreenCallback) : Screen(switchScreenCallback), currentOption(0), switchScreenCallback(switchScreenCallback)
+HomeScreen::HomeScreen(std::function<void(ScreenAction)> screenActionCallback) : Screen(screenActionCallback), currentOption(0), screenActionCallback(screenActionCallback)
 {
   // Clear previous screen
   clear();

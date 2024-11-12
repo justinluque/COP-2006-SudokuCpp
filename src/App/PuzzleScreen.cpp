@@ -6,7 +6,7 @@
 //   void giveHint();       // CTRL_H
 //   void quit();           // CTRL_Q
 
-PuzzleScreen::PuzzleScreen(std::function<void(AppScreen)> switchScreenCallback) : Screen(switchScreenCallback), switchScreenCallback(switchScreenCallback)
+PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback) : Screen(screenActionCallback), screenActionCallback(screenActionCallback)
 {
   int maxY, maxX;
   getmaxyx(stdscr, maxX, maxY);

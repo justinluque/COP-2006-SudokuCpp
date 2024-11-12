@@ -7,12 +7,12 @@
 class Screen
 {
 public:
-  Screen(std::function<void(AppScreen)> switchScreenCallback);
+  Screen(std::function<void(ScreenAction)> screenActionCallback);
   virtual ~Screen() = default;
 
   virtual void refreshScreen() = 0;
   virtual void handleInput() = 0;
 
 protected:
-  std::function<void(AppScreen)> switchScreenCallback;
+  std::function<void(ScreenAction)> screenActionCallback;
 };

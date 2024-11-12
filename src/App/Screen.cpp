@@ -2,4 +2,4 @@
 
 #include "Enum.h"
 
-Screen::Screen(std::function<void(AppScreen)> switchScreenCallback) : switchScreenCallback(switchScreenCallback) {}
+Screen::Screen(std::function<void(ScreenAction)> screenActionCallback) : screenActionCallback(screenActionCallback) {}

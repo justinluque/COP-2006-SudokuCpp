@@ -11,3 +11,12 @@ enum class AppState
   RUNNING,
   EXITING
 };
+
+enum class ScreenAction
+{
+  QUIT,
+  GENERATE_EASY,
+  GENERATE_MEDIUM,
+  GENERATE_HARD,
+  INPUT_CUSTOM
+};

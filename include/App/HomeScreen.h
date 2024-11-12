@@ -8,7 +8,7 @@
 class HomeScreen : public Screen
 {
 public:
-  HomeScreen(std::function<void(AppScreen)> switchScreenCallback);
+  HomeScreen(std::function<void(ScreenAction)> screenActionCallback);
   ~HomeScreen() override;
 
   void refreshScreen() override;
@@ -17,7 +17,7 @@ public:
 private:
   int sizeY, sizeX;
   size_t currentOption;
-  std::function<void(AppScreen)> switchScreenCallback;
+  std::function<void(ScreenAction)> screenActionCallback;
   WINDOW *window;
 
   void drawMainWindow();

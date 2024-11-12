@@ -9,7 +9,7 @@ int main()
   noecho();
   keypad(stdscr, true);
 
-  HomeScreen screen([](AppScreen) {});
+  HomeScreen screen([](ScreenAction) {});
   screen.refreshScreen();
   screen.handleInput();
 

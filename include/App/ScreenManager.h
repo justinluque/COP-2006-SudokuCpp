@@ -15,6 +15,8 @@ public:
 
   void switchWindow(AppScreen screenType);
 
+  void doScreenAction(ScreenAction screenAction);
+
 private:
   std::unique_ptr<Screen> currentScreen;
 };

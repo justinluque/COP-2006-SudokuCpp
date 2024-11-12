@@ -66,7 +66,29 @@ void HomeScreen::refreshScreen()
 
 void HomeScreen::handleInput()
 {
-  wgetch(window); // Gets a character from input
+  int key = wgetch(window);
+
+  switch (key)
+  {
+  case KEY_UP:
+    if (currentOption == 0)
+      currentOption = 3;
+    else
+      currentOption--;
+    break;
+
+  case KEY_DOWN:
+    currentOption = (currentOption + 1) % 4;
+    break;
+
+  case CTRL_X:
+    endwin(); // TODO: define quit behavior.
+    break;
+
+  case KEY_ENTER:
+    break; // TODO: define pick behavior.
+           //        likely will create an action function instead of passing many different bindings
+  }
 }
 
 void HomeScreen::drawMainWindow()

@@ -41,6 +41,9 @@ void App::initializeCurses()
 
   // Turn on keypad inputs such as the arrow keys
   keypad(stdscr, true);
+
+  // Hides the cursor
+  curs_set(0);
 }
 
 void App::destroyCurses()

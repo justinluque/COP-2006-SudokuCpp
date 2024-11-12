@@ -23,7 +23,7 @@ void App::run()
 
   while (currentState == AppState::RUNNING)
   {
-    screenManager->refresh();
+    screenManager->refreshCurrentScreen();
     screenManager->handleInput();
   }
 }

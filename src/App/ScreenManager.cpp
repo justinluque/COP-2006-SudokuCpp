@@ -11,7 +11,7 @@ ScreenManager::ScreenManager()
   currentScreen = nullptr;
 }
 
-void ScreenManager::refresh()
+void ScreenManager::refreshCurrentScreen()
 {
   if (currentScreen)
     currentScreen->refreshScreen();

@@ -10,7 +10,7 @@ class ScreenManager
 public:
   ScreenManager();
 
-  void refresh();
+  void refreshCurrentScreen();
   void handleInput();
 
   void switchWindow(AppScreen screenType);

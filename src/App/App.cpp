@@ -4,6 +4,7 @@
 
 #include "SudokuSolver.h"
 #include "SudokuGenerator.h"
+#include "Macro.h"
 
 App::App() : screenManager(std::make_shared<ScreenManager>())
 {
@@ -44,6 +45,12 @@ void App::initializeCurses()
 
   // Hides the cursor
   curs_set(0);
+
+  // Start color mode
+  start_color();
+
+  // Initialize color pairs
+  init_pair(HIGHLIGHT_COLOR_PAIR, COLOR_BLACK, COLOR_WHITE);
 }
 
 void App::destroyCurses()

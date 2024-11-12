@@ -1,5 +1,7 @@
 #pragma once
 
+#define HIGHLIGHT_COLOR_PAIR 1
+
 #define CTRL_A 1
 #define CTRL_B 2
 #define CTRL_C 3

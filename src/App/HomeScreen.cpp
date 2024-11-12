@@ -1,8 +1,19 @@
 #include "HomeScreen.h"
 
-#include "Enum.h"
+#include <array>
+#include <string_view>
 
-HomeScreen::HomeScreen(std::function<void(AppScreen)> switchScreenCallback) : Screen(switchScreenCallback), switchScreenCallback(switchScreenCallback)
+#include "Enum.h"
+#include "Macro.h"
+
+constexpr std::array<std::string_view, 4> options = {
+    "Generate easy puzzle",
+    "Generate medium puzzle",
+    "Generate hard puzzle",
+    "Enter custom puzzle",
+};
+
+HomeScreen::HomeScreen(std::function<void(AppScreen)> switchScreenCallback) : Screen(switchScreenCallback), currentOption(0), switchScreenCallback(switchScreenCallback)
 {
   // Clear previous screen
   clear();
@@ -29,6 +40,11 @@ HomeScreen::HomeScreen(std::function<void(AppScreen)> switchScreenCallback) : Sc
   else
   {
     window = newwin(sizeY, sizeX, startY, startX); // Centered window
+
+    keypad(window, true); /// Enable keypad inputs for our window
+
+    drawConstantMainWindow();
+
     drawMainWindow();
   }
 
@@ -43,6 +59,8 @@ HomeScreen::~HomeScreen()
 
 void HomeScreen::refreshScreen()
 {
+  drawMainWindow();
+
   wrefresh(window); // Refresh the window
 }
 
@@ -52,6 +70,23 @@ void HomeScreen::handleInput()
 }
 
 void HomeScreen::drawMainWindow()
+{
+
+  int optionsStartY = sizeY * 9 / 16;
+
+  for (size_t i = 0; i < 4; i++)
+  {
+    if (i == currentOption)
+      highlightOn();
+    mvwprintw(window, optionsStartY + i * 2, (sizeX - options[i].length()) / 2, options[i].data());
+    if (i == currentOption)
+      highlightOff();
+  }
+
+  wrefresh(window);
+}
+
+void HomeScreen::drawConstantMainWindow()
 {
   box(window, 0, 0);
 
@@ -67,16 +102,21 @@ void HomeScreen::drawMainWindow()
   mvwprintw(window, 5, ascii_start, "|_____||___||___||___||_,_||___||_____||  _||  _|");
   mvwprintw(window, 6, ascii_start, "                                       |_|  |_|  ");
 
-  int optionsStart = sizeY * 9 / 16;
-  mvwprintw(window, optionsStart, 2, "Generate easy puzzle");
-  mvwprintw(window, optionsStart + 2, 2, "Generate medium puzzle");
-  mvwprintw(window, optionsStart + 4, 2, "Generate hard puzzle");
-  mvwprintw(window, optionsStart + 6, 2, "Enter custom puzzle");
+  mvwprintw(window, 8, (sizeX - 30) / 2, "Sebastian Diaz & Justin Luque");
 }
-
 void HomeScreen::drawResizePrompt()
 {
   mvwprintw(window, 0, 0, "Please resize the terminal and restart the program.");
+}
+
+void HomeScreen::highlightOn()
+{
+  wattr_on(window, COLOR_PAIR(HIGHLIGHT_COLOR_PAIR), 0);
+}
+
+void HomeScreen::highlightOff()
+{
+  wattr_off(window, COLOR_PAIR(HIGHLIGHT_COLOR_PAIR), 0);
 }
 
 bool HomeScreen::windowIsOutOfBounds()

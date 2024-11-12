@@ -16,12 +16,19 @@ public:
 
 private:
   int sizeY, sizeX;
+  size_t currentOption;
   std::function<void(AppScreen)> switchScreenCallback;
   WINDOW *window;
 
   void drawMainWindow();
 
+  void drawConstantMainWindow();
+
   void drawResizePrompt();
+
+  void highlightOn();
+
+  void highlightOff();
 
   bool windowIsOutOfBounds();
 };

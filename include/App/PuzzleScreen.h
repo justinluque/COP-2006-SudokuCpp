@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include <ncurses/ncurses.h>
+#include <ncurses.h>
 
 #include "SudokuPuzzle.h"
 #include "Screen.h"

@@ -26,9 +26,7 @@ PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallbac
   int startY = (screenY - sizeY) / 2;
   int startX = (screenX - sizeX) / 2;
 
-  // Draw the main window if possible
-
-  window = newwin(screenY, screenX, 0, 0); // Full-screen window for resize prompt
+  window = newwin(sizeY, sizeX, startY, startX); // Full-screen window for resize prompt
 
   keypad(window, true); /// Enable keypad inputs for our window
 

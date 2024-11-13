@@ -1,7 +1,5 @@
 #include "App.h"
 
-#include <exception>
-
 #include <ncurses/ncurses.h>
 
 #include "SudokuSolver.h"

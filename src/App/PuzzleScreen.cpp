@@ -1,5 +1,7 @@
 #include "PuzzleScreen.h"
 
+#include "Macro.h"
+
 //  void generatePuzzle(); // CTRL_N
 //   void checkPuzzle();    // CTRL_C
 //   void solvePuzzle();    // CTRL_S
@@ -113,8 +115,10 @@ void PuzzleScreen::drawMainWindow()
 
 void PuzzleScreen::highlightOn()
 {
+  wattr_on(window, COLOR_PAIR(HIGHLIGHT_COLOR_PAIR), 0);
 }
 
 void PuzzleScreen::highlightOff()
 {
+  wattr_off(window, COLOR_PAIR(HIGHLIGHT_COLOR_PAIR), 0);
 }

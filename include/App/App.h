@@ -21,7 +21,4 @@ private:
   AppState currentState;
 
   std::shared_ptr<ScreenManager> screenManager;
-
-  int currentRow;
-  int currentCol;
 };

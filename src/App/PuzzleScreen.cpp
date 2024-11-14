@@ -155,7 +155,10 @@ void PuzzleScreen::drawNumByPos(int num, int row, int col)
 
   if (row == currentCellY && col == currentCellX)
     highlightOn();
-  mvwprintw(window, trueRow, trueCol, "%d", num);
+  if (num == 0)
+    mvwprintw(window, trueRow, trueCol, "-");
+  else
+    mvwprintw(window, trueRow, trueCol, "%d", num);
   if (row == currentCellY && col == currentCellX)
     highlightOff();
 }

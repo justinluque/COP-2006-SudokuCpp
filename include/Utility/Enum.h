@@ -31,3 +31,11 @@ enum class HomeScreenOption
   QUIT,
   COUNT
 };
+
+enum class PuzzleDifficulty
+{
+  EASY,
+  MEDIUM,
+  HARD,
+  CUSTOM
+};

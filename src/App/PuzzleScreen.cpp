@@ -11,7 +11,7 @@
 //   void giveHint();       // CTRL_H
 //   void quit();           // CTRL_Q
 
-PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback) : Screen(screenActionCallback), screenActionCallback(screenActionCallback), currentPuzzle(SudokuGenerator::generateEasy())
+PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback, PuzzleDifficulty difficulty) : Screen(screenActionCallback), screenActionCallback(screenActionCallback)
 {
   // Clear previous screen
   clear();
@@ -56,6 +56,25 @@ PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallbac
   subHelpWindow = nullptr;
 
   keypad(window, true); /// Enable keypad inputs for our window
+
+  switch (difficulty)
+  {
+  case PuzzleDifficulty::CUSTOM:
+    currentPuzzle = SudokuGenerator::generateEmpty();
+    break;
+
+  case PuzzleDifficulty::EASY:
+    currentPuzzle = SudokuGenerator::generateEasy();
+    break;
+
+  case PuzzleDifficulty::MEDIUM:
+    currentPuzzle = SudokuGenerator::generateMedium();
+    break;
+
+  case PuzzleDifficulty::HARD:
+    currentPuzzle = SudokuGenerator::generateHard();
+    break;
+  }
 
   drawGrid();
 

@@ -11,7 +11,7 @@
 class PuzzleScreen : public Screen
 {
 public:
-  PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback);
+  PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback, PuzzleDifficulty difficulty);
   ~PuzzleScreen() override;
 
   void refreshScreen() override;

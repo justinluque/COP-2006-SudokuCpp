@@ -31,21 +31,20 @@ void ScreenManager::doScreenAction(ScreenAction screenAction)
     mainAppState = AppState::EXITING;
     break;
 
-  // TODO: complete puzzle screen
   case ScreenAction::GENERATE_EASY:
-    switchWindow(AppScreen::PUZZLE);
+    switchWindow(AppScreen::PUZZLE, PuzzleDifficulty::EASY);
     break;
 
   case ScreenAction::GENERATE_MEDIUM:
-    switchWindow(AppScreen::PUZZLE);
+    switchWindow(AppScreen::PUZZLE, PuzzleDifficulty::MEDIUM);
     break;
 
   case ScreenAction::GENERATE_HARD:
-    switchWindow(AppScreen::PUZZLE);
+    switchWindow(AppScreen::PUZZLE, PuzzleDifficulty::HARD);
     break;
 
   case ScreenAction::ENTER_CUSTOM:
-    switchWindow(AppScreen::PUZZLE);
+    switchWindow(AppScreen::PUZZLE, PuzzleDifficulty::CUSTOM);
     break;
 
   case ScreenAction::COUNT:
@@ -65,7 +64,24 @@ void ScreenManager::switchWindow(AppScreen screenType)
     break;
 
   case AppScreen::PUZZLE:
-    currentScreen = std::make_unique<PuzzleScreen>(screenActionCallback);
+    currentScreen = std::make_unique<PuzzleScreen>(screenActionCallback, PuzzleDifficulty::CUSTOM);
+    break;
+  }
+}
+
+void ScreenManager::switchWindow(AppScreen screenType, PuzzleDifficulty difficulty)
+{
+  // Create a std::function from a member function
+  std::function<void(ScreenAction)> screenActionCallback = std::bind(&ScreenManager::doScreenAction, this, std::placeholders::_1);
+
+  switch (screenType)
+  {
+  case AppScreen::HOME:
+    currentScreen = std::make_unique<HomeScreen>(screenActionCallback);
+    break;
+
+  case AppScreen::PUZZLE:
+    currentScreen = std::make_unique<PuzzleScreen>(screenActionCallback, difficulty);
     break;
   }
 }

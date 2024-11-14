@@ -14,6 +14,7 @@ public:
   void handleInput();
 
   void switchWindow(AppScreen screenType);
+  void switchWindow(AppScreen screenType, PuzzleDifficulty difficulty);
 
   void doScreenAction(ScreenAction screenAction);
 

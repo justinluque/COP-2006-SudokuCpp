@@ -120,7 +120,7 @@ void PuzzleScreen::handleInput()
   case '7':
   case '8':
   case '9':
-    // TODO: change state of sudoku puzzle
+    break; // TODO: change state of sudoku puzzle
   }
 }
 
@@ -167,7 +167,7 @@ void PuzzleScreen::drawSudokuNums()
   for (int i = 0; i < 9; i++)
   {
     for (int j = 0; j < 9; j++)
-      drawNumByPos(i, i, j);
+      drawNumByPos(currentPuzzle->getCellValue(i, j), i, j);
   }
 }
 

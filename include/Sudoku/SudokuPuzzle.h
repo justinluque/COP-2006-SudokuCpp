@@ -15,6 +15,11 @@ public:
 
   void setCellValue(int num, int row, int col);
 
+  void setFixedCellValue(int num, int row, int col);
+
+  void setFixed(bool fixed, int row, int col);
+
 private:
   int grid[9][9];
+  bool fixedGrid[9][9];
 };

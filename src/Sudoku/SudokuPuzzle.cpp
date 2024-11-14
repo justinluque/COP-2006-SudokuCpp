@@ -37,6 +37,7 @@ SudokuPuzzle::SudokuPuzzle(std::initializer_list<std::initializer_list<int>> gri
 void SudokuPuzzle::reset()
 {
   std::fill(&grid[0][0], &grid[0][0] + 9 * 9, 0);
+  std::fill(&fixedGrid[0][0], &fixedGrid[0][0] + 9 * 9, false);
 }
 
 int SudokuPuzzle::getCellValue(int row, int col) const
@@ -58,5 +59,29 @@ void SudokuPuzzle::setCellValue(int num, int row, int col)
   if (col > 8 || col < 0)
     throw std::out_of_range("Column index is out of range: " + std::to_string(col));
 
-  grid[row][col] = num;
+  if (!fixedGrid[row][col])
+    grid[row][col] = num;
+}
+
+void SudokuPuzzle::setFixed(bool fixed, int row, int col)
+{
+  if (row > 8 || row < 0)
+    throw std::out_of_range("Row index is out of range: " + std::to_string(row));
+
+  if (col > 8 || col < 0)
+    throw std::out_of_range("Column index is out of range: " + std::to_string(col));
+
+  fixedGrid[row][col] = fixed;
+}
+
+void SudokuPuzzle::setFixedCellValue(int num, int row, int col)
+{
+  if (row > 8 || row < 0)
+    throw std::out_of_range("Row index is out of range: " + std::to_string(row));
+
+  if (col > 8 || col < 0)
+    throw std::out_of_range("Column index is out of range: " + std::to_string(col));
+
+  setCellValue(num, row, col);
+  setFixed(true, row, col);
 }

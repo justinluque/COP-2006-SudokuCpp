@@ -27,7 +27,7 @@ private:
 
   void drawMainWindow();
 
-  void drawConstantMainWindow();
+  void drawGrid();
 
   void highlightOn();
 

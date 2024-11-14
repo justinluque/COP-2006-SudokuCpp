@@ -1,5 +1,6 @@
 #include "PuzzleScreen.h"
 
+#include "SudokuGenerator.h"
 #include "Macro.h"
 
 //  void generatePuzzle(); // CTRL_N
@@ -8,7 +9,7 @@
 //   void giveHint();       // CTRL_H
 //   void quit();           // CTRL_Q
 
-PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback) : Screen(screenActionCallback), screenActionCallback(screenActionCallback)
+PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback) : Screen(screenActionCallback), screenActionCallback(screenActionCallback), currentPuzzle(SudokuGenerator::generateEasy())
 {
   // Clear previous screen
   clear();
@@ -16,7 +17,7 @@ PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallbac
 
   // Set the size of our main window
   sizeY = 30;
-  sizeX = 60;
+  sizeX = 80;
 
   // Get screen dimensions
   int screenY = getmaxy(stdscr);
@@ -30,9 +31,7 @@ PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallbac
 
   keypad(window, true); /// Enable keypad inputs for our window
 
-  drawConstantMainWindow();
-
-  drawMainWindow();
+  drawGrid();
 }
 
 PuzzleScreen::~PuzzleScreen()
@@ -101,14 +100,35 @@ void PuzzleScreen::handleInput() {}
 //   }
 // }
 
-void PuzzleScreen::drawConstantMainWindow()
+void PuzzleScreen::drawGrid()
 {
-  box(window, 0, 0);
+  int startY = 0, startX = 0;
+  int cellSize = 3;
+
+  int rowsDrawn = 0, colsDrawn = 0;
+  for (int row = 0; row <= 9; row++)
+  {
+    for (int column = 0; column <= 9; column++)
+    {
+      if (column % 3 == 0 && row != 0)
+      {
+        mvwprintw(window, rowsDrawn, colsDrawn, "|");
+        colsDrawn++;
+      }
+      colsDrawn += cellSize;
+    }
+    rowsDrawn++;
+    colsDrawn = 0;
+    if (row % 3 == 0)
+    {
+      mvwprintw(window, rowsDrawn, colsDrawn, "+---------+---------+---------+");
+      rowsDrawn++;
+    }
+  }
 }
 
 void PuzzleScreen::drawMainWindow()
 {
-  // TODO: draw current puzzle
 }
 
 void PuzzleScreen::highlightOn()

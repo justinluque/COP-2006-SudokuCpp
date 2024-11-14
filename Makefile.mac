@@ -16,12 +16,12 @@ BUILD_DIR := build
 EXAMPLES_DIR := examples
 
 # Output executable names
-TARGET := Sudoku.exe
-EXAMPLE1_TARGET := Example1.exe
-EXAMPLE2_TARGET := Example2.exe
-EXAMPLE3_TARGET := Example3.exe
-EXAMPLE4_TARGET := Example4.exe
-EXAMPLE5_TARGET := Example5.exe
+TARGET := Sudoku
+EXAMPLE1_TARGET := Example1
+EXAMPLE2_TARGET := Example2
+EXAMPLE3_TARGET := Example3
+EXAMPLE4_TARGET := Example4
+EXAMPLE5_TARGET := Example5
 
 # Compiler flags
 CXXFLAGS := -Wall -Wextra -pedantic \

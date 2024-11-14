@@ -91,7 +91,7 @@ std::unique_ptr<SudokuPuzzle> SudokuGenerator::generateHard()
 
   std::vector<int> startingNums = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
-  for (int i = 0; i < 9; i++)
+  for (int i = 0; i < 11; i++)
   {
     int choice = Random::randint(0, startingNums.size() - 1);
     hardPuzzle->setCellValue(startingNums[i], 0, i);

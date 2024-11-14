@@ -23,3 +23,10 @@ int Random::randint(int min, int max)
 
   return min + std::rand() % ((max + 1) - min);
 }
+
+int Random::choose(std::vector<int> things)
+{
+  seed();
+
+  return things[Random::randint(0, things.size() - 1)];
+}

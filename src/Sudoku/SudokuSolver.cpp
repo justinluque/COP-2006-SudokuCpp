@@ -31,7 +31,7 @@ bool SudokuSolver::isValid(const std::unique_ptr<SudokuPuzzle> &puzzle)
       if (value == 0)
         continue;
 
-      if (rows[row][value]++ || columns[value][col]++ || subgrids[row / 3][col / 3][value]++)
+      if (rows[row][value - 1]++ || columns[value - 1][col]++ || subgrids[row / 3][col / 3][value - 1]++)
         return false;
     }
   }

@@ -3,6 +3,7 @@
 #include <string>
 
 #include "SudokuGenerator.h"
+#include "SudokuSolver.h"
 #include "Macro.h"
 
 //  void generatePuzzle(); // CTRL_N
@@ -128,7 +129,8 @@ void PuzzleScreen::handleInput()
     break;
 
   case CTRL_S:
-    break; // TODO: show solution
+    currentPuzzle = SudokuSolver::solveBacktracking(currentPuzzle);
+    break;
 
   case '1':
   case '2':

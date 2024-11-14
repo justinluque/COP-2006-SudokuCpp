@@ -19,10 +19,18 @@ public:
 
 private:
   int sizeY, sizeX;
+
   int gridStartY, gridStartX;
+  int gridSizeY, gridSizeX;
   int cellSize;
 
+  int helpStartY, helpStartX;
+  int helpSizeY, helpSizeX;
+
+  int currentCellY, currentCellX;
+
   WINDOW *window;
+  WINDOW *subHelpWindow;
 
   std::function<void(ScreenAction)> screenActionCallback;
   std::unique_ptr<SudokuPuzzle> currentPuzzle;
@@ -32,6 +40,8 @@ private:
   void drawGrid();
 
   void drawNumByPos(int num, int row, int col);
+
+  void drawHelp();
 
   void highlightOn();
 

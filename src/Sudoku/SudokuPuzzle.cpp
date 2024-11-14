@@ -74,6 +74,17 @@ void SudokuPuzzle::setFixed(bool fixed, int row, int col)
   fixedGrid[row][col] = fixed;
 }
 
+void SudokuPuzzle::strongSetValue(int num, int row, int col)
+{
+  if (row > 8 || row < 0)
+    throw std::out_of_range("Row index is out of range: " + std::to_string(row));
+
+  if (col > 8 || col < 0)
+    throw std::out_of_range("Column index is out of range: " + std::to_string(col));
+
+  grid[row][col] = num;
+}
+
 void SudokuPuzzle::setFixedCellValue(int num, int row, int col)
 {
   if (row > 8 || row < 0)

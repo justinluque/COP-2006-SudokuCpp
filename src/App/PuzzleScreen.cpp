@@ -120,7 +120,7 @@ void PuzzleScreen::handleInput()
   case '7':
   case '8':
   case '9':
-    break; // TODO: change state of sudoku puzzle
+    currentPuzzle->setCellValue(key - '0', currentCellY, currentCellX);
   }
 }
 

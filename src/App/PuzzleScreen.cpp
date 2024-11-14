@@ -15,9 +15,16 @@ PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallbac
   clear();
   refresh();
 
+  // cellsize
+  cellSize = 3;
+
+  // grid start pos relative to main win
+  gridStartY = 1;
+  gridStartX = 2;
+
   // Set the size of our main window
-  sizeY = 30;
-  sizeX = 80;
+  sizeY = 17;
+  sizeX = 70;
 
   // Get screen dimensions
   int screenY = getmaxy(stdscr);
@@ -32,6 +39,8 @@ PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallbac
   keypad(window, true); /// Enable keypad inputs for our window
 
   drawGrid();
+
+  drawMainWindow();
 }
 
 PuzzleScreen::~PuzzleScreen()
@@ -102,9 +111,6 @@ void PuzzleScreen::handleInput() {}
 
 void PuzzleScreen::drawGrid()
 {
-  int startY = 0, startX = 0;
-  int cellSize = 3;
-
   int rowsDrawn = 0, colsDrawn = 0;
   for (int row = 0; row <= 9; row++)
   {
@@ -112,7 +118,7 @@ void PuzzleScreen::drawGrid()
     {
       if (column % 3 == 0 && row != 0)
       {
-        mvwprintw(window, rowsDrawn, colsDrawn, "|");
+        mvwprintw(window, rowsDrawn + gridStartY, colsDrawn + gridStartX, "|");
         colsDrawn++;
       }
       colsDrawn += cellSize;
@@ -121,14 +127,31 @@ void PuzzleScreen::drawGrid()
     colsDrawn = 0;
     if (row % 3 == 0)
     {
-      mvwprintw(window, rowsDrawn, colsDrawn, "+---------+---------+---------+");
+      mvwprintw(window, rowsDrawn + gridStartY, colsDrawn + gridStartX, "+---------+---------+---------+");
       rowsDrawn++;
     }
   }
 }
 
+void PuzzleScreen::drawNumByPos(int num, int row, int col)
+{
+  int startY = 0, startX = 0;
+
+  int trueRow = (row / 3 + 2) + row + gridStartY;
+  int trueCol = col / 3 + 2 + col * 3 + gridStartX;
+
+  mvwprintw(window, trueRow, trueCol, "%d", num);
+}
+
 void PuzzleScreen::drawMainWindow()
 {
+  box(window, 0, 0);
+
+  for (int i = 0; i < 9; i++)
+  {
+    for (int j = 0; j < 9; j++)
+      drawNumByPos(i, i, j);
+  }
 }
 
 void PuzzleScreen::highlightOn()

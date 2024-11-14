@@ -19,6 +19,8 @@ public:
 
 private:
   int sizeY, sizeX;
+  int gridStartY, gridStartX;
+  int cellSize;
 
   WINDOW *window;
 
@@ -28,6 +30,8 @@ private:
   void drawMainWindow();
 
   void drawGrid();
+
+  void drawNumByPos(int num, int row, int col);
 
   void highlightOn();
 

@@ -59,6 +59,9 @@ void SudokuPuzzle::setCellValue(int num, int row, int col)
   if (col > 8 || col < 0)
     throw std::out_of_range("Column index is out of range: " + std::to_string(col));
 
+  if (num < 0 || num > 9)
+    throw std::out_of_range("Value is out of range: " + std::to_string(num));
+
   if (!fixedGrid[row][col])
     grid[row][col] = num;
 }
@@ -82,6 +85,9 @@ void SudokuPuzzle::strongSetValue(int num, int row, int col)
   if (col > 8 || col < 0)
     throw std::out_of_range("Column index is out of range: " + std::to_string(col));
 
+  if (num < 0 || num > 9)
+    throw std::out_of_range("Value is out of range: " + std::to_string(num));
+
   grid[row][col] = num;
 }
 
@@ -92,6 +98,9 @@ void SudokuPuzzle::setFixedCellValue(int num, int row, int col)
 
   if (col > 8 || col < 0)
     throw std::out_of_range("Column index is out of range: " + std::to_string(col));
+
+  if (num < 0 || num > 9)
+    throw std::out_of_range("Value is out of range: " + std::to_string(num));
 
   setCellValue(num, row, col);
   setFixed(true, row, col);

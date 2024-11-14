@@ -26,6 +26,7 @@ EXAMPLE5_TARGET := Example5.exe
 # Compiler flags
 CXXFLAGS := -Wall -Wextra -pedantic \
 						-I/usr/include/ncurses/ \
+						-I/ucrt64/include/ncurses \
 						-I$(INCLUDE_DIR) -I$(INCLUDE_APP_DIR) \
 						-I$(INCLUDE_SUDOKU_DIR) -I$(INCLUDE_UTILITY_DIR) \
 						-lncurses -DNCURSES_STATIC -O2 -std=c++20

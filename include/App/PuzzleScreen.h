@@ -27,7 +27,7 @@ private:
   std::function<void(ScreenAction)> screenActionCallback;
   std::unique_ptr<SudokuPuzzle> currentPuzzle;
 
-  void drawMainWindow();
+  void drawSudokuNums();
 
   void drawGrid();
 

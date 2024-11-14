@@ -40,7 +40,7 @@ PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallbac
 
   drawGrid();
 
-  drawMainWindow();
+  drawSudokuNums();
 }
 
 PuzzleScreen::~PuzzleScreen()
@@ -143,7 +143,7 @@ void PuzzleScreen::drawNumByPos(int num, int row, int col)
   mvwprintw(window, trueRow, trueCol, "%d", num);
 }
 
-void PuzzleScreen::drawMainWindow()
+void PuzzleScreen::drawSudokuNums()
 {
   box(window, 0, 0);
 

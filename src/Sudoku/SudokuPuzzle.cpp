@@ -22,7 +22,7 @@ SudokuPuzzle::SudokuPuzzle(std::initializer_list<std::initializer_list<int>> gri
     {
       if (col_index > 8)
         throw std::out_of_range("Too many columns to construct 9x9 grid");
-      this->setCellValue(num, row_index, col_index);
+      this->setFixedCellValue(num, row_index, col_index);
       col_index++;
     }
     if (col_index < 8)

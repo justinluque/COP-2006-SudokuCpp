@@ -14,4 +14,6 @@ public:
   static std::unique_ptr<SudokuPuzzle> generateMedium();
 
   static std::unique_ptr<SudokuPuzzle> generateHard();
+
+  static std::unique_ptr<SudokuPuzzle> generateEmpty();
 };

@@ -26,3 +26,8 @@ std::unique_ptr<SudokuPuzzle> SudokuGenerator::generateHard()
 
   return hardPuzzle;
 }
+
+std::unique_ptr<SudokuPuzzle> SudokuGenerator::generateEmpty()
+{
+  return std::make_unique<SudokuPuzzle>();
+}

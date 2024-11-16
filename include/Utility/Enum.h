@@ -18,6 +18,7 @@ enum class ScreenAction
   GENERATE_MEDIUM,
   GENERATE_HARD,
   ENTER_CUSTOM,
+  MAIN_MENU,
   QUIT,
   COUNT
 };

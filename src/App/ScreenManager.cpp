@@ -47,6 +47,10 @@ void ScreenManager::doScreenAction(ScreenAction screenAction)
     switchWindow(AppScreen::PUZZLE, PuzzleDifficulty::CUSTOM);
     break;
 
+  case ScreenAction::MAIN_MENU:
+    switchWindow(AppScreen::HOME);
+    break;
+
   case ScreenAction::COUNT:
     break;
   }

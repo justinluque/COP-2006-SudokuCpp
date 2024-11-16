@@ -87,7 +87,6 @@ PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallbac
 PuzzleScreen::~PuzzleScreen()
 {
   delwin(window);
-  refreshScreen();
 }
 
 void PuzzleScreen::refreshScreen()
@@ -124,6 +123,10 @@ void PuzzleScreen::handleInput()
 
   case CTRL_S:
     currentPuzzle = SudokuSolver::solveBacktracking(currentPuzzle);
+    break;
+
+  case CTRL_R:
+    screenActionCallback(ScreenAction::MAIN_MENU);
     break;
 
   case '1':
@@ -200,14 +203,15 @@ void PuzzleScreen::drawHelp()
   std::string title = "Controls";
 
   std::string Navigation = "Navigate using arrow keys";
-  std::string sCtrl_S = "CTRL-S: Solve puzzle";
-  std::string sCtrl_M = "CTRL-M: Main Menu   ";
-  std::string sCtrl_X = "CTRL-X: Exit        ";
+  std::string sCtrl_S = "CTRL-S: Solve puzzle       ";
+  std::string sCtrl_R = "CTRL-R: Return to Main Menu";
+  std::string sCtrl_X = "CTRL-X: Exit               ";
 
   mvwprintw(subHelpWindow, 1, (helpSizeX - title.size()) / 2, title.data());
   mvwprintw(subHelpWindow, 3, (helpSizeX - Navigation.size()) / 2, Navigation.data());
   mvwprintw(subHelpWindow, 6, (helpSizeX - sCtrl_S.size()) / 2, sCtrl_S.data());
-  mvwprintw(subHelpWindow, 7, (helpSizeX - sCtrl_X.size()) / 2, sCtrl_X.data());
+  mvwprintw(subHelpWindow, 7, (helpSizeX - sCtrl_R.size()) / 2, sCtrl_R.data());
+  mvwprintw(subHelpWindow, 8, (helpSizeX - sCtrl_X.size()) / 2, sCtrl_X.data());
 
   wrefresh(subHelpWindow);
 }

@@ -59,11 +59,30 @@ bool SudokuSolver::isSolved(const std::unique_ptr<SudokuPuzzle> &puzzle)
 
 bool SudokuSolver::isCorrectPlacement(const std::unique_ptr<SudokuPuzzle> &puzzle, int num, int row, int col)
 {
-  std::unique_ptr<SudokuPuzzle> tempPuzzle = std::make_unique<SudokuPuzzle>(*puzzle);
+  for (int colIterator = 0; colIterator < 9; colIterator++)
+  {
+    if (puzzle->getCellValue(row, colIterator) == num)
+      return false;
+  }
 
-  tempPuzzle->setCellValue(num, row, col);
+  for (int rowIterator = 0; rowIterator < 9; rowIterator++)
+  {
+    if (puzzle->getCellValue(rowIterator, col) == num)
+      return false;
+  }
 
-  return isValid(tempPuzzle);
+  int startRow = (row / 3) * 3;
+  int startCol = (col / 3) * 3;
+  for (int rowIterator = startRow; rowIterator < startRow + 3; rowIterator++)
+  {
+    for (int columnIterator = startCol; columnIterator < startCol + 3; columnIterator++)
+    {
+      if (puzzle->getCellValue(rowIterator, columnIterator) == num)
+        return false;
+    }
+  }
+
+  return true;
 }
 
 bool SudokuSolver::recursiveAlgorithm(std::unique_ptr<SudokuPuzzle> &puzzle, int row, int col)

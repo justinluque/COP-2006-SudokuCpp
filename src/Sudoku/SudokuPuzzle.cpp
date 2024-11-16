@@ -45,10 +45,10 @@ void SudokuPuzzle::reset()
 
 int SudokuPuzzle::getCellValue(int row, int col) const
 {
-  if (row > 8 || row < 0)
+  if (row < 0 || row > 8)
     throw std::out_of_range("Row index is out of range: " + std::to_string(row));
 
-  if (col > 8 || col < 0)
+  if (col < 0 || col > 8)
     throw std::out_of_range("Column index is out of range: " + std::to_string(col));
 
   return grid[row][col];
@@ -56,10 +56,10 @@ int SudokuPuzzle::getCellValue(int row, int col) const
 
 void SudokuPuzzle::setCellValue(int num, int row, int col)
 {
-  if (row > 8 || row < 0)
+  if (row < 0 || row > 9)
     throw std::out_of_range("Row index is out of range: " + std::to_string(row));
 
-  if (col > 8 || col < 0)
+  if (col < 0 || col > 9)
     throw std::out_of_range("Column index is out of range: " + std::to_string(col));
 
   if (num < 0 || num > 9)
@@ -71,10 +71,10 @@ void SudokuPuzzle::setCellValue(int num, int row, int col)
 
 void SudokuPuzzle::setFixed(bool fixed, int row, int col)
 {
-  if (row > 8 || row < 0)
+  if (row < 0 || row > 8)
     throw std::out_of_range("Row index is out of range: " + std::to_string(row));
 
-  if (col > 8 || col < 0)
+  if (col < 0 || col > 8)
     throw std::out_of_range("Column index is out of range: " + std::to_string(col));
 
   fixedGrid[row][col] = fixed;
@@ -82,10 +82,10 @@ void SudokuPuzzle::setFixed(bool fixed, int row, int col)
 
 void SudokuPuzzle::strongSetValue(int num, int row, int col)
 {
-  if (row > 8 || row < 0)
+  if (row < 0 || row > 8)
     throw std::out_of_range("Row index is out of range: " + std::to_string(row));
 
-  if (col > 8 || col < 0)
+  if (col < 0 || col > 8)
     throw std::out_of_range("Column index is out of range: " + std::to_string(col));
 
   if (num < 0 || num > 9)
@@ -96,10 +96,10 @@ void SudokuPuzzle::strongSetValue(int num, int row, int col)
 
 void SudokuPuzzle::setFixedCellValue(int num, int row, int col)
 {
-  if (row > 8 || row < 0)
+  if (row < 0 || row > 8)
     throw std::out_of_range("Row index is out of range: " + std::to_string(row));
 
-  if (col > 8 || col < 0)
+  if (col < 0 || col > 8)
     throw std::out_of_range("Column index is out of range: " + std::to_string(col));
 
   if (num < 0 || num > 9)

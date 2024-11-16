@@ -16,24 +16,24 @@ SudokuPuzzle::SudokuPuzzle(std::initializer_list<std::initializer_list<int>> gri
   if (grid.size() != 9)
     throw std::out_of_range("Expected nine rows to construct 9x9 grid");
 
-  int row_index = 0;
+  int rowIterator = 0;
 
   for (const std::initializer_list<int> &row : grid)
   {
     if (row.size() != 9)
       throw std::out_of_range("Expected nine columns to construct 9x9 grid");
 
-    int col_index = 0;
+    int columnIterator = 0;
 
     for (const int &num : row)
     {
       if (num < 0 || num > 9)
         throw std::out_of_range("Cell value not in range of 0-9");
 
-      this->setFixedCellValue(num, row_index, col_index);
-      col_index++;
+      this->setFixedCellValue(num, rowIterator, columnIterator);
+      columnIterator++;
     }
-    row_index++;
+    rowIterator++;
   }
 }
 

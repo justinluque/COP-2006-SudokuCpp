@@ -68,15 +68,14 @@ bool SudokuSolver::isCorrectPlacement(const std::unique_ptr<SudokuPuzzle> &puzzl
 
 bool SudokuSolver::recursiveAlgorithm(std::unique_ptr<SudokuPuzzle> &puzzle, int row, int col)
 {
-  if (row == 9 && col == 0)
+  if (row == 9)
   {
     return true;
   }
 
-  if (col > 8)
+  if (col >= 9)
   {
-    row++;
-    col = 0;
+    return recursiveAlgorithm(puzzle, row + 1, 0);
   }
 
   if (puzzle->getCellValue(row, col) > 0)

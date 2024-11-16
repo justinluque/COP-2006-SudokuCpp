@@ -79,18 +79,20 @@ void HomeScreen::handleInput()
   int key = wgetch(window);
   size_t optionCode = static_cast<int>(selectedOption);
 
+  int maxSelectableOption = static_cast<int>(HomeScreenOption::COUNT) - 1;
+
   switch (key)
   {
   case KEY_UP:
     if (optionCode == 0)
-      optionCode = static_cast<int>(HomeScreenOption::COUNT) - 1;
+      optionCode = maxSelectableOption;
     else
       optionCode--;
     selectedOption = static_cast<HomeScreenOption>(optionCode);
     break;
 
   case KEY_DOWN:
-    optionCode = (optionCode + 1) % static_cast<size_t>(HomeScreenOption::COUNT);
+    optionCode = (optionCode + 1) % (maxSelectableOption + 1);
     selectedOption = static_cast<HomeScreenOption>(optionCode);
     break;
 

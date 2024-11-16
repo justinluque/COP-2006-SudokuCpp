@@ -13,6 +13,8 @@ SudokuPuzzle::SudokuPuzzle()
 // Created for debugging purposes and is only intended to be used for such
 SudokuPuzzle::SudokuPuzzle(std::initializer_list<std::initializer_list<int>> grid)
 {
+  this->reset();
+
   if (grid.size() != 9)
     throw std::out_of_range("Expected nine rows to construct 9x9 grid");
 

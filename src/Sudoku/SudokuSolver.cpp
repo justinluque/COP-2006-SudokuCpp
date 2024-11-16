@@ -83,11 +83,11 @@ bool SudokuSolver::recursiveAlgorithm(std::unique_ptr<SudokuPuzzle> &puzzle, int
     return recursiveAlgorithm(puzzle, row, col + 1);
   }
 
-  for (int iterator = 1; iterator <= 9; iterator++)
+  for (int digit = 1; digit <= 9; digit++)
   {
-    if (isCorrectPlacement(puzzle, iterator, row, col))
+    if (isCorrectPlacement(puzzle, digit, row, col))
     {
-      puzzle->setCellValue(iterator, row, col);
+      puzzle->setCellValue(digit, row, col);
       if (recursiveAlgorithm(puzzle, row, col + 1))
       {
         return true;

@@ -84,10 +84,7 @@ void HomeScreen::handleInput()
   switch (key)
   {
   case KEY_UP:
-    if (optionCode == 0)
-      optionCode = maxSelectableOption;
-    else
-      optionCode--;
+    optionCode = (optionCode + maxSelectableOption) % (maxSelectableOption + 1);
     selectedOption = static_cast<HomeScreenOption>(optionCode);
     break;
 

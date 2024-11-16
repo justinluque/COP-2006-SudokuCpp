@@ -103,10 +103,7 @@ void PuzzleScreen::handleInput()
   switch (key)
   {
   case KEY_UP:
-    if (currentCellY == 0)
-      currentCellY = 8;
-    else
-      currentCellY--;
+    currentCellY = (currentCellY + 8) % 9;
     break;
 
   case KEY_DOWN:
@@ -114,10 +111,7 @@ void PuzzleScreen::handleInput()
     break;
 
   case KEY_LEFT:
-    if (currentCellX == 0)
-      currentCellX = 8;
-    else
-      currentCellX--;
+    currentCellX = (currentCellX + 8) % 9;
     break;
 
   case KEY_RIGHT:

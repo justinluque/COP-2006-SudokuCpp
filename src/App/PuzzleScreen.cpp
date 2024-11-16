@@ -6,12 +6,6 @@
 #include "SudokuSolver.h"
 #include "Macro.h"
 
-//  void generatePuzzle(); // CTRL_N
-//   void checkPuzzle();    // CTRL_C
-//   void solvePuzzle();    // CTRL_S
-//   void giveHint();       // CTRL_H
-//   void quit();           // CTRL_Q
-
 PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback, PuzzleDifficulty difficulty) : Screen(screenActionCallback), screenActionCallback(screenActionCallback)
 {
   // Clear previous screen

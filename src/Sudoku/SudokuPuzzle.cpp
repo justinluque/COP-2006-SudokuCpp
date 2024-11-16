@@ -32,7 +32,10 @@ SudokuPuzzle::SudokuPuzzle(std::initializer_list<std::initializer_list<int>> gri
       if (num < 0 || num > 9)
         throw std::out_of_range("Cell value not in range of 0-9");
 
-      this->setFixedCellValue(num, rowIterator, columnIterator);
+      this->strongSetValue(num, rowIterator, columnIterator);
+      if (num != 0)
+        this->setFixed(true, rowIterator, columnIterator);
+
       columnIterator++;
     }
     rowIterator++;

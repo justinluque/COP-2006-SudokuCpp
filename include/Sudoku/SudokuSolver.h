@@ -17,8 +17,12 @@ public:
 
   static bool isSolved(const std::unique_ptr<SudokuPuzzle> &puzzle);
 
+  static bool hasUniqueSolution(const std::unique_ptr<SudokuPuzzle> &puzzle);
+
 private:
   static bool isCorrectPlacement(const std::unique_ptr<SudokuPuzzle> &puzzle, int num, int row, int col);
 
   static bool recursiveAlgorithm(std::unique_ptr<SudokuPuzzle> &puzzle, int row, int col);
+
+  static bool findSecondSolution(std::unique_ptr<SudokuPuzzle> &puzzle, int row, int col, bool &solutionFound);
 };

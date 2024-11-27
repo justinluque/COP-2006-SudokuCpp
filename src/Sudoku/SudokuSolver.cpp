@@ -85,6 +85,34 @@ bool SudokuSolver::isCorrectPlacement(const std::unique_ptr<SudokuPuzzle> &puzzl
   return true;
 }
 
+bool SudokuSolver::hasUniqueSolution(const std::unique_ptr<SudokuPuzzle> &puzzle)
+{
+  if (!isValid(puzzle))
+    return false; // For the puzzle to have solutions it must not break any rules of Sudoku
+
+  int totalClues = 0;
+
+  for (int row = 0; row < 9; row++)
+  {
+    for (int column = 0; column < 9; column++)
+    {
+      if (puzzle->getCellValue(row, column) != 0)
+        totalClues++;
+    }
+  }
+
+  // It is impossible to have a unique solution to a sudoku puzzle with less than 17 clues
+  if (totalClues < 17)
+    return false;
+
+  std::unique_ptr<SudokuPuzzle> copiedPuzzle = std::make_unique<SudokuPuzzle>(*puzzle);
+
+  bool secondSolutionFound = false;
+
+  // If we can't find a second solution, there must be a unique solution to the puzzle
+  return !findSecondSolution(copiedPuzzle, 0, 0, secondSolutionFound);
+}
+
 bool SudokuSolver::recursiveAlgorithm(std::unique_ptr<SudokuPuzzle> &puzzle, int row, int col)
 {
   if (row == 9)
@@ -115,4 +143,49 @@ bool SudokuSolver::recursiveAlgorithm(std::unique_ptr<SudokuPuzzle> &puzzle, int
     puzzle->setCellValue(0, row, col);
   }
   return false;
+}
+
+bool SudokuSolver::findSecondSolution(std::unique_ptr<SudokuPuzzle> &puzzle, int row, int col, bool &foundSolution)
+{
+  if (row == 9)
+  {
+    return false; // We’ve reached the end of the puzzle
+  }
+
+  if (col >= 9)
+  {
+    return findSecondSolution(puzzle, row + 1, 0, foundSolution); // Move to next row
+  }
+
+  if (puzzle->getCellValue(row, col) > 0)
+  {
+    return findSecondSolution(puzzle, row, col + 1, foundSolution); // Skip filled cells
+  }
+
+  for (int digit = 1; digit <= 9; digit++)
+  {
+    if (isCorrectPlacement(puzzle, digit, row, col))
+    {
+      puzzle->setCellValue(digit, row, col);
+
+      // If we reach the end and we find the first solution, we flag it
+      if (recursiveAlgorithm(puzzle, row, col + 1))
+      {
+        if (foundSolution)
+        {
+          return true; // If we've already found a solution, and we find another, it's not unique
+        }
+
+        foundSolution = true; // Mark that we found one solution
+
+        // Now, try to "skip" the last solution by continuing the backtracking from here.
+        puzzle->setCellValue(0, row, col); // Undo the last assignment and continue
+        return findSecondSolution(puzzle, row, col + 1, foundSolution);
+      }
+
+      puzzle->setCellValue(0, row, col); // Undo assignment
+    }
+  }
+
+  return false; // No second solution found
 }

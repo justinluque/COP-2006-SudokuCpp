@@ -10,7 +10,7 @@ App::App() : screenManager(nullptr)
 {
   initializeCurses();
 
-  screenManager = std::make_shared<ScreenManager>(currentState);
+  screenManager = std::make_unique<ScreenManager>(currentState);
 
   screenManager->switchWindow(AppScreen::HOME);
 }

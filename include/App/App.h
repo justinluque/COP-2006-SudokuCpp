@@ -20,5 +20,5 @@ private:
 
   AppState currentState;
 
-  std::shared_ptr<ScreenManager> screenManager;
+  std::unique_ptr<ScreenManager> screenManager;
 };

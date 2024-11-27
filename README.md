@@ -15,3 +15,7 @@
 - https://www.youtube.com/watch?v=TjFXEUCMqI8
 
   Cool one pass solution to checking whether a sudoku puzzle is valid
+
+- https://www.nature.com/articles/nature.2012.9751
+
+  Generally, a valid sudoku puzzle with a unique solution must have at least 17 clues

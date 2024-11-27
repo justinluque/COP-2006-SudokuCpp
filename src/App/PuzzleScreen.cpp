@@ -123,6 +123,7 @@ void PuzzleScreen::handleInput()
     screenActionCallback(ScreenAction::MAIN_MENU);
     break;
 
+  case '0':
   case '1':
   case '2':
   case '3':

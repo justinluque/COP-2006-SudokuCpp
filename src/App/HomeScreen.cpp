@@ -23,7 +23,7 @@ namespace
   }
 }
 
-HomeScreen::HomeScreen(std::function<void(ScreenAction)> screenActionCallback) : Screen(screenActionCallback), selectedOption(HomeScreenOption::GENERATE_EASY), screenActionCallback(screenActionCallback)
+HomeScreen::HomeScreen(std::function<void(ScreenAction)> screenActionCallback) : Screen(screenActionCallback), selectedOption(HomeScreenOption::GENERATE_EASY)
 {
   // Clear previous screen
   clear();

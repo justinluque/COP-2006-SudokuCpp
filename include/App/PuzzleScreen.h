@@ -32,7 +32,6 @@ private:
   WINDOW *window;
   WINDOW *subHelpWindow;
 
-  std::function<void(ScreenAction)> screenActionCallback;
   std::unique_ptr<SudokuPuzzle> currentPuzzle;
 
   void drawSudokuNums();

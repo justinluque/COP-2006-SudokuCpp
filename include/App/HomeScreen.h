@@ -17,7 +17,7 @@ public:
 private:
   int sizeY, sizeX;
   HomeScreenOption selectedOption;
-  std::function<void(ScreenAction)> screenActionCallback;
+
   WINDOW *window;
 
   void drawMainWindow();

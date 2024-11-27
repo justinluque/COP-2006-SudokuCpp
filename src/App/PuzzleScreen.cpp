@@ -6,7 +6,7 @@
 #include "SudokuSolver.h"
 #include "Macro.h"
 
-PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback, PuzzleDifficulty difficulty) : Screen(screenActionCallback), screenActionCallback(screenActionCallback)
+PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback, PuzzleDifficulty difficulty) : Screen(screenActionCallback)
 {
   // Clear previous screen
   clear();

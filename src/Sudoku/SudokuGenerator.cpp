@@ -74,6 +74,8 @@ std::unique_ptr<SudokuPuzzle> SudokuGenerator::generate(int clues)
     }
   }
 
+  setCluesToFixed(puzzle);
+
   return puzzle;
 }
 

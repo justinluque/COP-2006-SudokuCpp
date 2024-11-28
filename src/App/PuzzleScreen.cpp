@@ -140,6 +140,12 @@ void PuzzleScreen::handleInput()
       break;
     }
 
+    if (SudokuSolver::isSolved(currentPuzzle))
+    {
+      drawMessage("Puzzle is already complete!");
+      break;
+    }
+
     std::unique_ptr<SudokuPuzzle> solvedPuzzle = SudokuSolver::solveBacktracking(currentPuzzle);
 
     if (solvedPuzzle == nullptr)

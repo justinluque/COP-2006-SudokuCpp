@@ -39,6 +39,8 @@ PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallbac
   currentCellY = 4;
   currentCellX = 4;
 
+  messageDrawn = false;
+
   // Get screen dimensions
   int screenY = getmaxy(stdscr);
   int screenX = getmaxx(stdscr);
@@ -85,6 +87,11 @@ PuzzleScreen::~PuzzleScreen()
 
 void PuzzleScreen::refreshScreen()
 {
+  if (!messageDrawn)
+    clearMessage();
+  else
+    messageDrawn = false;
+
   drawSudokuNums();
   wrefresh(window);
 }
@@ -209,6 +216,18 @@ void PuzzleScreen::drawHelp()
   mvwprintw(subHelpWindow, 8, (helpSizeX - sCtrl_X.size()) / 2, sCtrl_X.data());
 
   wrefresh(subHelpWindow);
+}
+
+void PuzzleScreen::drawMessage(std::string msg)
+{
+  clearMessage();
+  mvwprintw(window, 15, 1, msg.c_str());
+  messageDrawn = true;
+}
+
+void PuzzleScreen::clearMessage()
+{
+  mvwprintw(window, 15, 1, "                                                                    ");
 }
 
 void PuzzleScreen::highlightOn()

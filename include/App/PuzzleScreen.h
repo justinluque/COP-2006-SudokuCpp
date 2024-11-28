@@ -29,6 +29,8 @@ private:
 
   int currentCellY, currentCellX;
 
+  bool messageDrawn;
+
   WINDOW *window;
   WINDOW *subHelpWindow;
 
@@ -45,4 +47,8 @@ private:
   void highlightOn();
 
   void highlightOff();
+
+  void drawMessage(std::string msg);
+
+  void clearMessage();
 };

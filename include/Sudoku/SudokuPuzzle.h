@@ -15,6 +15,8 @@ public:
 
   bool getFixed(int row, int col) const;
 
+  int getTotalClues() const;
+
   void setCellValue(int num, int row, int col);
 
   void strongSetValue(int num, int row, int col);

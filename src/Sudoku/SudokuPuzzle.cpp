@@ -96,6 +96,18 @@ bool SudokuPuzzle::getFixed(int row, int col) const
   return fixedGrid[row][col];
 }
 
+int SudokuPuzzle::getTotalClues() const
+{
+  int totalClues = 0;
+
+  for (int row = 0; row < 9; row++)
+    for (int col = 0; col < 9; col++)
+      if (getCellValue(row, col) != 0)
+        totalClues++;
+
+  return totalClues;
+}
+
 void SudokuPuzzle::strongSetValue(int num, int row, int col)
 {
   if (row < 0 || row > 8)

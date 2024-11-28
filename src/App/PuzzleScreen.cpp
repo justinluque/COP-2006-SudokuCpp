@@ -131,7 +131,7 @@ void PuzzleScreen::handleInput()
 
   case 's':
   {
-    if (SudokuSolver::countClues(currentPuzzle) < 17)
+    if (currentPuzzle->getTotalClues() < 17)
       drawMessage("Multiple solutions found; using the first one identified");
 
     if (!SudokuSolver::isValid(currentPuzzle))

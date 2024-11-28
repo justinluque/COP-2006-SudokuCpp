@@ -127,39 +127,7 @@ void PuzzleScreen::handleInput()
 
   case 's':
   {
-    if (currentPuzzle->getTotalClues() < 17)
-      drawMessage("Multiple solutions found; using the first one identified");
-
-    if (!SudokuSolver::isValid(currentPuzzle))
-    {
-      drawMessage("Puzzle could not be solved. Try resetting the puzzle.");
-      break;
-    }
-
-    if (SudokuSolver::isSolved(currentPuzzle))
-    {
-      drawMessage("Puzzle is already complete!");
-      break;
-    }
-
-    std::unique_ptr<SudokuPuzzle> copiedPuzzle = std::make_unique<SudokuPuzzle>(*currentPuzzle);
-
-    if (difficulty != PuzzleDifficulty::CUSTOM)
-      copiedPuzzle->resetToFixedCells();
-
-    std::unique_ptr<SudokuPuzzle>
-        solvedPuzzle = SudokuSolver::solveBacktracking(copiedPuzzle);
-
-    if (solvedPuzzle == nullptr)
-    {
-      drawMessage("Puzzle could not be solved.");
-      break;
-    }
-
-    currentPuzzle = std::move(solvedPuzzle);
-
-    currentPuzzle->lockPuzzle();
-
+    solveCurrentPuzzle();
     break;
   }
 
@@ -194,6 +162,42 @@ void PuzzleScreen::handleInput()
     currentPuzzle->setCellValue(0, currentCellY, currentCellX);
     break;
   }
+}
+
+void PuzzleScreen::solveCurrentPuzzle()
+{
+  if (currentPuzzle->getTotalClues() < 17)
+    drawMessage("Multiple solutions found; using the first one identified");
+
+  if (!SudokuSolver::isValid(currentPuzzle))
+  {
+    drawMessage("Puzzle could not be solved. Try resetting the puzzle.");
+    return;
+  }
+
+  if (SudokuSolver::isSolved(currentPuzzle))
+  {
+    drawMessage("Puzzle is already complete!");
+    return;
+  }
+
+  std::unique_ptr<SudokuPuzzle> copiedPuzzle = std::make_unique<SudokuPuzzle>(*currentPuzzle);
+
+  if (difficulty != PuzzleDifficulty::CUSTOM)
+    copiedPuzzle->resetToFixedCells();
+
+  std::unique_ptr<SudokuPuzzle>
+      solvedPuzzle = SudokuSolver::solveBacktracking(copiedPuzzle);
+
+  if (solvedPuzzle == nullptr)
+  {
+    drawMessage("Puzzle could not be solved.");
+    return;
+  }
+
+  currentPuzzle = std::move(solvedPuzzle);
+
+  currentPuzzle->lockPuzzle();
 }
 
 void PuzzleScreen::drawGrid()

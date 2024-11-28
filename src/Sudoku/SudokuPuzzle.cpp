@@ -102,7 +102,7 @@ int SudokuPuzzle::getTotalClues() const
 
   for (int row = 0; row < 9; row++)
     for (int col = 0; col < 9; col++)
-      if (getCellValue(row, col) != 0)
+      if (getFixed(row, col))
         totalClues++;
 
   return totalClues;

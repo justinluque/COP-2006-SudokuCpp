@@ -153,6 +153,10 @@ void PuzzleScreen::handleInput()
     break;
   }
 
+  case 'r':
+    resetPuzzleToFixedCells();
+    break;
+
   case 'm':
     screenActionCallback(ScreenAction::MAIN_MENU);
     break;
@@ -174,6 +178,14 @@ void PuzzleScreen::handleInput()
     currentPuzzle->setCellValue(0, currentCellY, currentCellX);
     break;
   }
+}
+
+void PuzzleScreen::resetPuzzleToFixedCells()
+{
+  for (int row = 0; row < 9; row++)
+    for (int col = 0; col < 9; col++)
+      if (!currentPuzzle->getFixed(row, col))
+        currentPuzzle->setCellValue(0, row, col);
 }
 
 void PuzzleScreen::drawGrid()

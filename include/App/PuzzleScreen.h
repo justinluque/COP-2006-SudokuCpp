@@ -36,6 +36,8 @@ private:
 
   std::unique_ptr<SudokuPuzzle> currentPuzzle;
 
+  void resetPuzzleToFixedCells();
+
   void drawSudokuNums();
 
   void drawGrid();

@@ -7,6 +7,7 @@
 #include "Macro.h"
 
 // TODO: check entered nums (highlight bad ones as red and good as green)
+// TODO: random hint keybind
 
 PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback, PuzzleDifficulty difficulty) : Screen(screenActionCallback), difficulty(difficulty)
 {

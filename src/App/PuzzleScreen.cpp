@@ -6,6 +6,12 @@
 #include "SudokuSolver.h"
 #include "Macro.h"
 
+// TODO: store solved puzzle in a var
+// TODO: check entered nums (highlight bad ones as red and good as green)
+// TODO: msg for if puzzle is already complete
+// TODO: msg if you fill in everything and it's right
+// TODO: reset puzzle button
+
 PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback, PuzzleDifficulty difficulty) : Screen(screenActionCallback)
 {
   // Clear previous screen
@@ -119,14 +125,15 @@ void PuzzleScreen::handleInput()
     break;
 
   case CTRL_X:
+  case 'x':
     screenActionCallback(ScreenAction::QUIT);
     break;
 
-  case CTRL_S:
+  case 's':
   {
     if (!SudokuSolver::isValid(currentPuzzle))
     {
-      drawMessage("Puzzle could not be solved.");
+      drawMessage("Puzzle could not be solved. Try resetting the puzzle.");
       break;
     }
 
@@ -143,7 +150,7 @@ void PuzzleScreen::handleInput()
     break;
   }
 
-  case CTRL_R:
+  case 'm':
     screenActionCallback(ScreenAction::MAIN_MENU);
     break;
 

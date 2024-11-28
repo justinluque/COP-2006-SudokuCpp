@@ -146,7 +146,12 @@ void PuzzleScreen::handleInput()
       break;
     }
 
-    std::unique_ptr<SudokuPuzzle> solvedPuzzle = SudokuSolver::solveBacktracking(currentPuzzle);
+    std::unique_ptr<SudokuPuzzle> copiedPuzzle = std::make_unique<SudokuPuzzle>(*currentPuzzle);
+
+    copiedPuzzle->resetToFixedCells();
+
+    std::unique_ptr<SudokuPuzzle>
+        solvedPuzzle = SudokuSolver::solveBacktracking(copiedPuzzle);
 
     if (solvedPuzzle == nullptr)
     {

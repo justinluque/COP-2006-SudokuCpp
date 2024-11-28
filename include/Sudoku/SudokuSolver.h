@@ -23,8 +23,6 @@ public:
 
   static int countClues(const std::unique_ptr<SudokuPuzzle> &puzzle);
 
-  static int lockPuzzle(std::unique_ptr<SudokuPuzzle> &puzzle);
-
 private:
   static bool recursiveAlgorithm(std::unique_ptr<SudokuPuzzle> &puzzle, int row, int col);
 

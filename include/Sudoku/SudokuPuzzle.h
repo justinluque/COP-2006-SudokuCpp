@@ -23,6 +23,10 @@ public:
 
   void setFixed(bool fixed, int row, int col);
 
+  void lockPuzzle();
+
+  void unlockPuzzle();
+
 private:
   int grid[9][9];
   bool fixedGrid[9][9];

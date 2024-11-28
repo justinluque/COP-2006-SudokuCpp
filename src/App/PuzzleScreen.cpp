@@ -156,7 +156,7 @@ void PuzzleScreen::handleInput()
 
     currentPuzzle = std::move(solvedPuzzle);
 
-    SudokuSolver::lockPuzzle(currentPuzzle);
+    currentPuzzle->lockPuzzle();
 
     break;
   }
@@ -184,7 +184,7 @@ void PuzzleScreen::handleInput()
     if (SudokuSolver::isSolved(currentPuzzle))
     {
       drawMessage("You've solved the puzzle! Well done!");
-      SudokuSolver::lockPuzzle(currentPuzzle);
+      currentPuzzle->lockPuzzle();
     }
     break;
 

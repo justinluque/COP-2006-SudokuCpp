@@ -124,3 +124,17 @@ void SudokuPuzzle::setFixedCellValue(int num, int row, int col)
   setCellValue(num, row, col);
   setFixed(true, row, col);
 }
+
+void SudokuPuzzle::lockPuzzle()
+{
+  for (int row = 0; row < 9; row++)
+    for (int col = 0; col < 9; col++)
+      setFixed(true, row, col);
+}
+
+void SudokuPuzzle::unlockPuzzle()
+{
+  for (int row = 0; row < 9; row++)
+    for (int col = 0; col < 9; col++)
+      setFixed(false, row, col);
+}

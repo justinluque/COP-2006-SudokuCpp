@@ -101,13 +101,6 @@ int SudokuSolver::countClues(const std::unique_ptr<SudokuPuzzle> &puzzle)
   return totalClues;
 }
 
-int SudokuSolver::lockPuzzle(std::unique_ptr<SudokuPuzzle> &puzzle)
-{
-  for (int row = 0; row < 9; row++)
-    for (int col = 0; col < 9; col++)
-      puzzle->setFixed(true, row, col);
-}
-
 bool SudokuSolver::hasUniqueSolution(const std::unique_ptr<SudokuPuzzle> &puzzle)
 {
   if (!isValid(puzzle))

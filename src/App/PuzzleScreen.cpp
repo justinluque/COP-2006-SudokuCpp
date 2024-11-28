@@ -180,6 +180,12 @@ void PuzzleScreen::handleInput()
   case '8':
   case '9':
     currentPuzzle->setCellValue(key - '0', currentCellY, currentCellX);
+
+    if (SudokuSolver::isSolved(currentPuzzle))
+    {
+      drawMessage("You've solved the puzzle! Well done!");
+      SudokuSolver::lockPuzzle(currentPuzzle);
+    }
     break;
 
   case KEY_BACKSPACE:

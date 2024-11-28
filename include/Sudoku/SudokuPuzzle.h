@@ -13,6 +13,8 @@ public:
 
   int getCellValue(int row, int col) const;
 
+  bool getFixed(int row, int col) const;
+
   void setCellValue(int num, int row, int col);
 
   void strongSetValue(int num, int row, int col);

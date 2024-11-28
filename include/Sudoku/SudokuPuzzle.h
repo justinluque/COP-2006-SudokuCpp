@@ -11,6 +11,8 @@ public:
 
   void reset();
 
+  void resetToFixedCells();
+
   int getCellValue(int row, int col) const;
 
   bool getFixed(int row, int col) const;

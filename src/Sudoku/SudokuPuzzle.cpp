@@ -48,6 +48,14 @@ void SudokuPuzzle::reset()
   std::fill(&fixedGrid[0][0], &fixedGrid[0][0] + 9 * 9, false);
 }
 
+void SudokuPuzzle::resetToFixedCells()
+{
+  for (int row = 0; row < 9; row++)
+    for (int col = 0; col < 9; col++)
+      if (getFixed(row, col))
+        setCellValue(0, row, col);
+}
+
 int SudokuPuzzle::getCellValue(int row, int col) const
 {
   if (row < 0 || row > 8)

@@ -237,9 +237,9 @@ void PuzzleScreen::drawHelp()
   std::string title = "Controls";
 
   std::string Navigation = "Navigate using arrow keys";
-  std::string sCtrl_S = "CTRL-S: Solve puzzle       ";
-  std::string sCtrl_R = "CTRL-R: Return to Main Menu";
-  std::string sCtrl_X = "CTRL-X: Exit               ";
+  std::string sCtrl_S = "[s] - Solve puzzle       ";
+  std::string sCtrl_R = "[m] -  Return to Main Menu";
+  std::string sCtrl_X = "[x] -  Exit               ";
 
   mvwprintw(subHelpWindow, 1, (helpSizeX - title.size()) / 2, title.data());
   mvwprintw(subHelpWindow, 3, (helpSizeX - Navigation.size()) / 2, Navigation.data());

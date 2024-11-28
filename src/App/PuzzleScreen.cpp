@@ -12,7 +12,7 @@
 // TODO: msg if you fill in everything and it's right
 // TODO: once puzzle is solved set every cell to fixed
 
-PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback, PuzzleDifficulty difficulty) : Screen(screenActionCallback)
+PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback, PuzzleDifficulty difficulty) : Screen(screenActionCallback), difficulty(difficulty)
 {
   // Clear previous screen
   clear();

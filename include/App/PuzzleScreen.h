@@ -31,6 +31,8 @@ private:
 
   bool messageDrawn;
 
+  PuzzleDifficulty difficulty;
+
   WINDOW *window;
   WINDOW *subHelpWindow;
 

@@ -34,6 +34,9 @@ CXXFLAGS := -Wall -Wextra -pedantic \
 # Debug-specific flags
 DEBUG_FLAGS := -g -O0  # Include debugging symbols, disable optimization
 
+# Static flags
+STATIC_FLAGS := -static -static-libgcc -static-libstdc++
+
 # Source files and object files
 SRCS := $(wildcard $(SRC_DIR)/*.cpp) $(wildcard $(SRC_APP_DIR)/*.cpp) $(wildcard $(SRC_SUDOKU_DIR)/*.cpp)
 OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(wildcard $(SRC_DIR)/*.cpp)) \
@@ -55,6 +58,10 @@ $(TARGET): $(OBJS)
 # Debug target
 debug: CXXFLAGS += $(DEBUG_FLAGS)
 debug: $(TARGET)
+
+# Static target
+static: CXXFLAGS += $(STATIC_FLAGS)
+static: $(TARGET)
 
 # Example target for creating_class_objects.cpp
 example1: $(DEP_OBJS) $(EXAMPLES_DIR)/creating_class_objects.cpp | $(BUILD_DIR)

@@ -6,11 +6,7 @@
 #include "SudokuSolver.h"
 #include "Macro.h"
 
-// TODO: store solved puzzle in a var
 // TODO: check entered nums (highlight bad ones as red and good as green)
-// TODO: msg for if puzzle is already complete
-// TODO: msg if you fill in everything and it's right
-// TODO: once puzzle is solved set every cell to fixed
 
 PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback, PuzzleDifficulty difficulty) : Screen(screenActionCallback), difficulty(difficulty)
 {

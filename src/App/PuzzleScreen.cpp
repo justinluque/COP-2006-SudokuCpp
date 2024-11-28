@@ -158,6 +158,7 @@ void PuzzleScreen::handleInput()
   case '8':
   case '9':
     currentPuzzle->setCellValue(key - '0', currentCellY, currentCellX);
+    break;
   }
 }
 

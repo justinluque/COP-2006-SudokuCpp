@@ -264,15 +264,15 @@ void PuzzleScreen::drawHelp()
   std::string Navigation = "Navigate using arrow keys";
   std::string sMsg = "[s] - Solve puzzle        ";
   std::string mMsg = "[m] -  Return to Main Menu";
-  std::string xMsg = "[x] -  Exit               ";
   std::string rMsg = "[r] - Reset the puzzle    ";
+  std::string xMsg = "[x] -  Exit               ";
 
   mvwprintw(subHelpWindow, 1, (helpSizeX - title.size()) / 2, title.data());
   mvwprintw(subHelpWindow, 3, (helpSizeX - Navigation.size()) / 2, Navigation.data());
   mvwprintw(subHelpWindow, 6, (helpSizeX - sMsg.size()) / 2, sMsg.data());
   mvwprintw(subHelpWindow, 7, (helpSizeX - mMsg.size()) / 2, mMsg.data());
-  mvwprintw(subHelpWindow, 8, (helpSizeX - xMsg.size()) / 2, xMsg.data());
-  mvwprintw(subHelpWindow, 9, (helpSizeX - rMsg.size()) / 2, rMsg.data());
+  mvwprintw(subHelpWindow, 8, (helpSizeX - rMsg.size()) / 2, rMsg.data());
+  mvwprintw(subHelpWindow, 9, (helpSizeX - xMsg.size()) / 2, xMsg.data());
 
   wrefresh(subHelpWindow);
 }

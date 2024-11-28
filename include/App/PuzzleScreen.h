@@ -40,8 +40,6 @@ private:
 
   void solveCurrentPuzzle();
 
-  void resetPuzzleToFixedCells();
-
   void drawSudokuNums();
 
   void drawGrid();

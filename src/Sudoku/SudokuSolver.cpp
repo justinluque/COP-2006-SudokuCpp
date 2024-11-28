@@ -85,6 +85,22 @@ bool SudokuSolver::isCorrectPlacement(const std::unique_ptr<SudokuPuzzle> &puzzl
   return true;
 }
 
+int SudokuSolver::countClues(const std::unique_ptr<SudokuPuzzle> &puzzle)
+{
+  int totalClues = 0;
+
+  for (int row = 0; row < 9; row++)
+  {
+    for (int column = 0; column < 9; column++)
+    {
+      if (puzzle->getCellValue(row, column) != 0)
+        totalClues++;
+    }
+  }
+
+  return totalClues;
+}
+
 bool SudokuSolver::hasUniqueSolution(const std::unique_ptr<SudokuPuzzle> &puzzle)
 {
   if (!isValid(puzzle))

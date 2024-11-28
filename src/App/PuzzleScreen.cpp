@@ -156,6 +156,8 @@ void PuzzleScreen::handleInput()
 
     currentPuzzle = std::move(solvedPuzzle);
 
+    SudokuSolver::lockPuzzle(currentPuzzle);
+
     break;
   }
 

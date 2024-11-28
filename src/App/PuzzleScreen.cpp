@@ -123,8 +123,25 @@ void PuzzleScreen::handleInput()
     break;
 
   case CTRL_S:
-    currentPuzzle = SudokuSolver::solveBacktracking(currentPuzzle);
+  {
+    if (!SudokuSolver::isValid(currentPuzzle))
+    {
+      drawMessage("Puzzle could not be solved.");
+      break;
+    }
+
+    std::unique_ptr<SudokuPuzzle> solvedPuzzle = SudokuSolver::solveBacktracking(currentPuzzle);
+
+    if (solvedPuzzle == nullptr)
+    {
+      drawMessage("Puzzle could not be solved.");
+      break;
+    }
+
+    currentPuzzle = std::move(solvedPuzzle);
+
     break;
+  }
 
   case CTRL_R:
     screenActionCallback(ScreenAction::MAIN_MENU);

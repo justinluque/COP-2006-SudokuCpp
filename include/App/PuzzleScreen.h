@@ -38,6 +38,8 @@ private:
 
   std::unique_ptr<SudokuPuzzle> currentPuzzle;
 
+  std::unique_ptr<SudokuPuzzle> solvedPuzzle;
+
   void solveCurrentPuzzle();
 
   void drawSudokuNums();

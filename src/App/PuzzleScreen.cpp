@@ -187,8 +187,7 @@ void PuzzleScreen::solveCurrentPuzzle()
   if (difficulty != PuzzleDifficulty::CUSTOM)
     copiedPuzzle->resetToFixedCells();
 
-  std::unique_ptr<SudokuPuzzle>
-      solvedPuzzle = SudokuSolver::solveBacktracking(copiedPuzzle);
+  solvedPuzzle = SudokuSolver::solveBacktracking(copiedPuzzle);
 
   if (solvedPuzzle == nullptr)
   {

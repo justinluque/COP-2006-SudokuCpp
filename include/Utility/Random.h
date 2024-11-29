@@ -6,5 +6,6 @@ namespace Random
 {
   int randint(int min, int max);
 
-  void shuffle(std::vector<int> &things);
+  template <typename T>
+  void shuffle(std::vector<T> &things);
 }

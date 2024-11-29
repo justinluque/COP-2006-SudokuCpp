@@ -27,9 +27,13 @@ int Random::randint(int min, int max)
   return distribution(rng);
 }
 
-void Random::shuffle(std::vector<int> &things)
+template <typename T>
+void Random::shuffle(std::vector<T> &things)
 {
   seed();
 
   std::shuffle(things.begin(), things.end(), rng);
 }
+
+// Explicitly instantiate template
+template void Random::shuffle(std::vector<int> &things);

@@ -40,6 +40,8 @@ private:
 
   std::unique_ptr<SudokuPuzzle> solvedPuzzle;
 
+  void showHint();
+
   void findSolution();
 
   void showSolution();

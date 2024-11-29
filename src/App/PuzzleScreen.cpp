@@ -1,10 +1,13 @@
 #include "PuzzleScreen.h"
 
 #include <string>
+#include <vector>
+#include <utility>
 
 #include "SudokuGenerator.h"
 #include "SudokuSolver.h"
 #include "Macro.h"
+#include "Random.h"
 
 // TODO: check entered nums (highlight bad ones as red and good as green)
 // TODO: random hint keybind
@@ -76,6 +79,9 @@ PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallbac
     break;
   }
 
+  if (difficulty != PuzzleDifficulty::CUSTOM)
+    solvedPuzzle = SudokuSolver::solveBacktracking(currentPuzzle);
+
   drawGrid();
 
   drawHelp();
@@ -132,6 +138,12 @@ void PuzzleScreen::handleInput()
     break;
   }
 
+  case 'h':
+  {
+    showHint();
+    break;
+  }
+
   case 'r':
     currentPuzzle->resetToFixedCells();
     break;
@@ -163,6 +175,46 @@ void PuzzleScreen::handleInput()
     currentPuzzle->setCellValue(0, currentCellY, currentCellX);
     break;
   }
+}
+
+void PuzzleScreen::showHint()
+{
+  std::vector<std::pair<int, int>> candidates;
+
+  for (int row = 0; row < 9; row++)
+    for (int col = 0; col < 9; col++)
+    {
+      int cellValue = currentPuzzle->getCellValue(row, col);
+      bool isCellEditable = !currentPuzzle->getFixed(row, col);
+      bool isCellEmpty = (cellValue == 0);
+      bool isPlacementValid = SudokuSolver::isCorrectPlacement(currentPuzzle, cellValue, row, col);
+
+      if (isCellEditable && (isCellEmpty || !isPlacementValid))
+      {
+        candidates.push_back(std::make_pair(row, col));
+      }
+    }
+
+  if (candidates.empty())
+  {
+    drawMessage("No cells can receive a hint.");
+    return;
+  }
+
+  std::pair<int, int> chosenCell = Random::choose(candidates);
+
+  // TODO: use singleton pattern (i.e. getSolvedPuzzle() function?)
+  if (solvedPuzzle == nullptr)
+    findSolution();
+
+  currentCellX = chosenCell.second;
+  currentCellY = chosenCell.first;
+
+  int solvedCellValue = solvedPuzzle->getCellValue(currentCellY, currentCellX);
+
+  currentPuzzle->setFixedCellValue(solvedCellValue, currentCellY, currentCellX);
+
+  return;
 }
 
 void PuzzleScreen::findSolution()

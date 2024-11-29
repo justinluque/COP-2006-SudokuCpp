@@ -320,8 +320,8 @@ void PuzzleScreen::drawHelp()
   std::string sMsg = "[s] - Solve puzzle        ";
   std::string hMsg = "[h] - Give hint           ";
   std::string cMsg = "[c] - Check guesses so far";
-  std::string mMsg = "[m] -  Return to Main Menu";
   std::string rMsg = "[r] - Reset the puzzle    ";
+  std::string mMsg = "[m] -  Return to Main Menu";
   std::string xMsg = "[x] -  Exit               ";
 
   mvwprintw(subHelpWindow, 1, (helpSizeX - title.size()) / 2, title.data());
@@ -329,8 +329,8 @@ void PuzzleScreen::drawHelp()
   mvwprintw(subHelpWindow, 5, (helpSizeX - sMsg.size()) / 2, sMsg.data());
   mvwprintw(subHelpWindow, 6, (helpSizeX - hMsg.size()) / 2, hMsg.data());
   mvwprintw(subHelpWindow, 7, (helpSizeX - cMsg.size()) / 2, cMsg.data());
-  mvwprintw(subHelpWindow, 8, (helpSizeX - mMsg.size()) / 2, mMsg.data());
-  mvwprintw(subHelpWindow, 9, (helpSizeX - rMsg.size()) / 2, rMsg.data());
+  mvwprintw(subHelpWindow, 8, (helpSizeX - rMsg.size()) / 2, rMsg.data());
+  mvwprintw(subHelpWindow, 9, (helpSizeX - mMsg.size()) / 2, mMsg.data());
   mvwprintw(subHelpWindow, 10, (helpSizeX - xMsg.size()) / 2, xMsg.data());
 
   wrefresh(subHelpWindow);

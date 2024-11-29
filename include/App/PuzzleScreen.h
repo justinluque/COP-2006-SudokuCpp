@@ -40,7 +40,9 @@ private:
 
   std::unique_ptr<SudokuPuzzle> solvedPuzzle;
 
-  void solveCurrentPuzzle();
+  void findSolution();
+
+  void showSolution();
 
   void drawSudokuNums();
 

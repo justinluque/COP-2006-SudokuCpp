@@ -128,7 +128,7 @@ void PuzzleScreen::handleInput()
 
   case 's':
   {
-    solveCurrentPuzzle();
+    showSolution();
     break;
   }
 
@@ -165,7 +165,7 @@ void PuzzleScreen::handleInput()
   }
 }
 
-void PuzzleScreen::solveCurrentPuzzle()
+void PuzzleScreen::findSolution()
 {
   if (currentPuzzle->getTotalClues() < 17)
     drawMessage("Multiple solutions found; using the first one identified");
@@ -194,6 +194,12 @@ void PuzzleScreen::solveCurrentPuzzle()
     drawMessage("Puzzle could not be solved.");
     return;
   }
+}
+
+void PuzzleScreen::showSolution()
+{
+  if (solvedPuzzle == nullptr)
+    findSolution();
 
   currentPuzzle = std::move(solvedPuzzle);
 

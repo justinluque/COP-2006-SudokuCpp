@@ -10,7 +10,6 @@
 #include "Random.h"
 
 // TODO: check entered nums (highlight bad ones as red and good as green)
-// TODO: random hint keybind
 
 PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback, PuzzleDifficulty difficulty) : Screen(screenActionCallback), difficulty(difficulty)
 {
@@ -203,7 +202,6 @@ void PuzzleScreen::showHint()
 
   std::pair<int, int> chosenCell = Random::choose(candidates);
 
-  // TODO: use singleton pattern (i.e. getSolvedPuzzle() function?)
   if (solvedPuzzle == nullptr)
     findSolution();
 

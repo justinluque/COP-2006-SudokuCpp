@@ -52,7 +52,7 @@ void SudokuPuzzle::resetToFixedCells()
 {
   for (int row = 0; row < 9; row++)
     for (int col = 0; col < 9; col++)
-      if (getFixed(row, col))
+      if (!getFixed(row, col))
         setCellValue(0, row, col);
 }
 

@@ -143,6 +143,12 @@ void PuzzleScreen::handleInput()
     break;
   }
 
+  case 'v':
+  {
+    validateGuesses();
+    break;
+  }
+
   case 'r':
     currentPuzzle->resetToFixedCells();
     break;
@@ -162,6 +168,8 @@ void PuzzleScreen::handleInput()
   case '8':
   case '9':
     currentPuzzle->setCellValue(key - '0', currentRow, currentColumn);
+
+    badGuesses[currentRow][currentColumn] = false;
 
     if (SudokuSolver::isSolved(currentPuzzle))
     {
@@ -262,6 +270,27 @@ void PuzzleScreen::showSolution()
   currentPuzzle->lockPuzzle();
 }
 
+void PuzzleScreen::validateGuesses()
+{
+  if (solvedPuzzle == nullptr)
+    findSolution();
+
+  if (solvedPuzzle == nullptr)
+    return;
+
+  for (int row = 0; row < 9; row++)
+    for (int col = 0; col < 9; col++)
+    {
+      int cellValue = currentPuzzle->getCellValue(row, col);
+      int solvedCellValue = solvedPuzzle->getCellValue(row, col);
+
+      if (cellValue == 0)
+        continue;
+
+      badGuesses[row][col] = cellValue != solvedCellValue;
+    }
+}
+
 void PuzzleScreen::drawGrid()
 {
   int rowsDrawn = 0, colsDrawn = 0;
@@ -291,12 +320,18 @@ void PuzzleScreen::drawNumByPos(int num, int row, int col)
   const int trueRow = (row / 3 + 2) + row + gridStartY;
   const int trueCol = col / 3 + 2 + col * 3 + gridStartX;
 
-  if (row == currentRow && col == currentColumn)
+  if (badGuesses[row][col])
+    highlightOn(WRONG_COLOR_PAIR);
+  else if (row == currentRow && col == currentColumn)
     highlightOn(HIGHLIGHT_COLOR_PAIR);
+
   if (num == 0)
     mvwprintw(window, trueRow, trueCol, "-");
   else
     mvwprintw(window, trueRow, trueCol, "%d", num);
+
+  if (badGuesses[row][col])
+    highlightOff(WRONG_COLOR_PAIR);
   if (row == currentRow && col == currentColumn)
     highlightOff(HIGHLIGHT_COLOR_PAIR);
 }

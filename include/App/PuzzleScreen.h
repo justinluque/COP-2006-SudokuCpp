@@ -31,6 +31,8 @@ private:
 
   bool messageDrawn;
 
+  bool badGuesses[9][9] = {false};
+
   PuzzleDifficulty difficulty;
 
   WINDOW *window;
@@ -45,6 +47,8 @@ private:
   void findSolution();
 
   void showSolution();
+
+  void validateGuesses();
 
   void drawSudokuNums();
 

@@ -31,6 +31,9 @@ private:
 
   bool messageDrawn;
 
+  bool solvedPuzzleFound;
+  bool currentPuzzleSolved;
+
   bool badGuesses[9][9] = {false};
 
   PuzzleDifficulty difficulty;

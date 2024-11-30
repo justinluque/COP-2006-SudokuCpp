@@ -9,7 +9,7 @@
 #include "Macro.h"
 #include "Random.h"
 
-PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback, PuzzleDifficulty difficulty) : Screen(screenActionCallback), difficulty(difficulty)
+PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback, PuzzleDifficulty difficulty) : Screen(screenActionCallback), solvedPuzzleFound(false), currentPuzzleSolved(false), difficulty(difficulty)
 {
   // Clear previous screen
   clear();
@@ -77,7 +77,9 @@ PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallbac
   }
 
   if (difficulty != PuzzleDifficulty::CUSTOM)
-    solvedPuzzle = SudokuSolver::solveBacktracking(currentPuzzle);
+  {
+    findSolution();
+  }
 
   drawGrid();
 
@@ -256,21 +258,31 @@ void PuzzleScreen::findSolution()
     drawMessage("Puzzle could not be solved.");
     return;
   }
+
+  solvedPuzzleFound = true;
 }
 
 void PuzzleScreen::showSolution()
 {
-  if (solvedPuzzle == nullptr)
+  if (currentPuzzleSolved)
+    return;
+
+  if (!solvedPuzzleFound)
     findSolution();
+
+  if (solvedPuzzle == nullptr)
+    return;
 
   currentPuzzle = std::move(solvedPuzzle);
 
   currentPuzzle->lockPuzzle();
+
+  currentPuzzleSolved = true;
 }
 
 void PuzzleScreen::validateGuesses()
 {
-  if (solvedPuzzle == nullptr)
+  if (!solvedPuzzleFound)
     findSolution();
 
   if (solvedPuzzle == nullptr)

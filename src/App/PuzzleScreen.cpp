@@ -9,8 +9,6 @@
 #include "Macro.h"
 #include "Random.h"
 
-// TODO: check entered nums (highlight bad ones as red and good as green)
-
 PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallback, PuzzleDifficulty difficulty) : Screen(screenActionCallback), difficulty(difficulty)
 {
   // Clear previous screen

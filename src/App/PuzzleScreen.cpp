@@ -168,6 +168,12 @@ void PuzzleScreen::handleInput()
       drawMessage("You've solved the puzzle! Well done!");
       currentPuzzle->lockPuzzle();
     }
+
+    else if (currentPuzzle->getFixed(currentCellY, currentCellX))
+    {
+      drawMessage("You can't edit this clue as it's fixed.");
+    }
+
     break;
 
   case KEY_BACKSPACE:

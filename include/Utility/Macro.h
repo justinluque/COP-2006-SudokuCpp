@@ -1,6 +1,8 @@
 #pragma once
 
 #define HIGHLIGHT_COLOR_PAIR 1
+#define CORRECT_COLOR_PAIR 2
+#define WRONG_COLOR_PAIR 3
 
 #define ENTER 10
 

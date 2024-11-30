@@ -53,6 +53,8 @@ void App::initializeCurses()
 
   // Initialize color pairs
   init_pair(HIGHLIGHT_COLOR_PAIR, COLOR_BLACK, COLOR_WHITE);
+  init_pair(CORRECT_COLOR_PAIR, COLOR_BLACK, COLOR_GREEN);
+  init_pair(WRONG_COLOR_PAIR, COLOR_BLACK, COLOR_RED);
 }
 
 void App::destroyCurses()

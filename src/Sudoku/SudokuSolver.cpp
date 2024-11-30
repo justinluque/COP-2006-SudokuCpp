@@ -71,8 +71,8 @@ bool SudokuSolver::isCorrectPlacement(const std::unique_ptr<SudokuPuzzle> &puzzl
       return false;
   }
 
-  int startRow = (row / 3) * 3;
-  int startCol = (col / 3) * 3;
+  const int startRow = (row / 3) * 3;
+  const int startCol = (col / 3) * 3;
   for (int rowIterator = startRow; rowIterator < startRow + 3; rowIterator++)
   {
     for (int columnIterator = startCol; columnIterator < startCol + 3; columnIterator++)

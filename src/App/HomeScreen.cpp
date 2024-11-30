@@ -34,12 +34,12 @@ HomeScreen::HomeScreen(std::function<void(ScreenAction)> screenActionCallback) :
   sizeX = 60;
 
   // Get screen dimensions
-  int screenY = getmaxy(stdscr);
-  int screenX = getmaxx(stdscr);
+  const int screenY = getmaxy(stdscr);
+  const int screenX = getmaxx(stdscr);
 
   // Calculate top-left corner coordinates to center the window
-  int startY = (screenY - sizeY) / 2;
-  int startX = (screenX - sizeX) / 2;
+  const int startY = (screenY - sizeY) / 2;
+  const int startX = (screenX - sizeX) / 2;
 
   // Draw the main window if possible
   if (windowIsOutOfBounds())
@@ -76,10 +76,10 @@ void HomeScreen::refreshScreen()
 
 void HomeScreen::handleInput()
 {
-  int key = wgetch(window);
+  const int key = wgetch(window);
   size_t optionCode = static_cast<int>(selectedOption);
 
-  int maxSelectableOption = static_cast<int>(HomeScreenOption::COUNT) - 1;
+  const int maxSelectableOption = static_cast<int>(HomeScreenOption::COUNT) - 1;
 
   switch (key)
   {
@@ -128,8 +128,7 @@ void HomeScreen::handleInput()
 
 void HomeScreen::drawMainWindow()
 {
-
-  int optionsStartY = sizeY * 9 / 16;
+  const int optionsStartY = sizeY * 9 / 16;
 
   for (size_t optionIterator = 0; optionIterator < static_cast<size_t>(HomeScreenOption::COUNT); optionIterator++)
   {
@@ -148,9 +147,9 @@ void HomeScreen::drawConstantMainWindow()
 {
   box(window, 0, 0);
 
-  int ascii_width = 50;
+  const int ascii_width = 50;
 
-  int ascii_start = (sizeX - ascii_width) / 2;
+  const int ascii_start = (sizeX - ascii_width) / 2;
 
   // Print the ASCII art inside the window
   mvwprintw(window, 1, ascii_start, "                                                 ");

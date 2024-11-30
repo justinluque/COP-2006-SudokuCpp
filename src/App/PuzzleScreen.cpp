@@ -47,12 +47,12 @@ PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallbac
   messageDrawn = false;
 
   // Get screen dimensions
-  int screenY = getmaxy(stdscr);
-  int screenX = getmaxx(stdscr);
+  const int screenY = getmaxy(stdscr);
+  const int screenX = getmaxx(stdscr);
 
   // Calculate top-left corner coordinates to center the window
-  int startY = (screenY - sizeY) / 2;
-  int startX = (screenX - sizeX) / 2;
+  const int startY = (screenY - sizeY) / 2;
+  const int startX = (screenX - sizeX) / 2;
 
   window = newwin(sizeY, sizeX, startY, startX); // Full-screen window for resize prompt
   subHelpWindow = nullptr;
@@ -106,7 +106,7 @@ void PuzzleScreen::refreshScreen()
 
 void PuzzleScreen::handleInput()
 {
-  int key = wgetch(window);
+  const int key = wgetch(window);
 
   switch (key)
   {
@@ -189,10 +189,10 @@ void PuzzleScreen::showHint()
   for (int row = 0; row < 9; row++)
     for (int col = 0; col < 9; col++)
     {
-      int cellValue = currentPuzzle->getCellValue(row, col);
-      bool isCellEditable = !currentPuzzle->getFixed(row, col);
-      bool isCellEmpty = (cellValue == 0);
-      bool isPlacementValid = SudokuSolver::isCorrectPlacement(currentPuzzle, cellValue, row, col);
+      const int cellValue = currentPuzzle->getCellValue(row, col);
+      const bool isCellEditable = !currentPuzzle->getFixed(row, col);
+      const bool isCellEmpty = (cellValue == 0);
+      const bool isPlacementValid = SudokuSolver::isCorrectPlacement(currentPuzzle, cellValue, row, col);
 
       if (isCellEditable && (isCellEmpty || !isPlacementValid))
       {
@@ -288,8 +288,8 @@ void PuzzleScreen::drawGrid()
 
 void PuzzleScreen::drawNumByPos(int num, int row, int col)
 {
-  int trueRow = (row / 3 + 2) + row + gridStartY;
-  int trueCol = col / 3 + 2 + col * 3 + gridStartX;
+  const int trueRow = (row / 3 + 2) + row + gridStartY;
+  const int trueCol = col / 3 + 2 + col * 3 + gridStartX;
 
   if (row == currentRow && col == currentColumn)
     highlightOn(HIGHLIGHT_COLOR_PAIR);
@@ -323,15 +323,15 @@ void PuzzleScreen::drawHelp()
   }
   box(subHelpWindow, 0, 0);
 
-  std::string title = "Controls";
+  const std::string title = "Controls";
 
-  std::string Navigation = "Navigate using arrow keys";
-  std::string sMsg = "[s] - Solve puzzle        ";
-  std::string hMsg = "[h] - Give hint           ";
-  std::string cMsg = "[v] - Validate guesses    ";
-  std::string rMsg = "[r] - Reset the puzzle    ";
-  std::string mMsg = "[m] - Main Menu           ";
-  std::string xMsg = "[x] - Exit                ";
+  const std::string Navigation = "Navigate using arrow keys";
+  const std::string sMsg = "[s] - Solve puzzle        ";
+  const std::string hMsg = "[h] - Give hint           ";
+  const std::string cMsg = "[v] - Validate guesses    ";
+  const std::string rMsg = "[r] - Reset the puzzle    ";
+  const std::string mMsg = "[m] - Main Menu           ";
+  const std::string xMsg = "[x] - Exit                ";
 
   mvwprintw(subHelpWindow, 1, (helpSizeX - title.size()) / 2, title.data());
   mvwprintw(subHelpWindow, 3, (helpSizeX - Navigation.size()) / 2, Navigation.data());

@@ -54,9 +54,9 @@ private:
 
   void drawHelp();
 
-  void highlightOn();
+  void highlightOn(int highlight_color_pair_code);
 
-  void highlightOff();
+  void highlightOff(int highlight_color_pair_code);
 
   void drawMessage(std::string msg);
 

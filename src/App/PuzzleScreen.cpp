@@ -286,13 +286,13 @@ void PuzzleScreen::drawNumByPos(int num, int row, int col)
   int trueCol = col / 3 + 2 + col * 3 + gridStartX;
 
   if (row == currentCellY && col == currentCellX)
-    highlightOn();
+    highlightOn(HIGHLIGHT_COLOR_PAIR);
   if (num == 0)
     mvwprintw(window, trueRow, trueCol, "-");
   else
     mvwprintw(window, trueRow, trueCol, "%d", num);
   if (row == currentCellY && col == currentCellX)
-    highlightOff();
+    highlightOff(HIGHLIGHT_COLOR_PAIR);
 }
 
 void PuzzleScreen::drawSudokuNums()
@@ -351,12 +351,12 @@ void PuzzleScreen::clearMessage()
   mvwprintw(window, 15, 1, "                                                                    ");
 }
 
-void PuzzleScreen::highlightOn()
+void PuzzleScreen::highlightOn(int highlight_color_pair_code)
 {
-  wattr_on(window, COLOR_PAIR(HIGHLIGHT_COLOR_PAIR), 0);
+  wattr_on(window, COLOR_PAIR(highlight_color_pair_code), 0);
 }
 
-void PuzzleScreen::highlightOff()
+void PuzzleScreen::highlightOff(int highlight_color_pair_code)
 {
-  wattr_off(window, COLOR_PAIR(HIGHLIGHT_COLOR_PAIR), 0);
+  wattr_off(window, COLOR_PAIR(highlight_color_pair_code), 0);
 }

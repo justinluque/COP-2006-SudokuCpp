@@ -41,8 +41,8 @@ PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallbac
   helpSizeY = 13;
 
   // current cell starts at (4, 4)
-  currentCellY = 4;
-  currentCellX = 4;
+  currentRow = 4;
+  currentColumn = 4;
 
   messageDrawn = false;
 
@@ -111,19 +111,19 @@ void PuzzleScreen::handleInput()
   switch (key)
   {
   case KEY_UP:
-    currentCellY = (currentCellY + 8) % 9;
+    currentRow = (currentRow + 8) % 9;
     break;
 
   case KEY_DOWN:
-    currentCellY = (currentCellY + 1) % 9;
+    currentRow = (currentRow + 1) % 9;
     break;
 
   case KEY_LEFT:
-    currentCellX = (currentCellX + 8) % 9;
+    currentColumn = (currentColumn + 8) % 9;
     break;
 
   case KEY_RIGHT:
-    currentCellX = (currentCellX + 1) % 9;
+    currentColumn = (currentColumn + 1) % 9;
     break;
 
   case CTRL_X:
@@ -161,7 +161,7 @@ void PuzzleScreen::handleInput()
   case '7':
   case '8':
   case '9':
-    currentPuzzle->setCellValue(key - '0', currentCellY, currentCellX);
+    currentPuzzle->setCellValue(key - '0', currentRow, currentColumn);
 
     if (SudokuSolver::isSolved(currentPuzzle))
     {
@@ -169,7 +169,7 @@ void PuzzleScreen::handleInput()
       currentPuzzle->lockPuzzle();
     }
 
-    else if (currentPuzzle->getFixed(currentCellY, currentCellX))
+    else if (currentPuzzle->getFixed(currentRow, currentColumn))
     {
       drawMessage("You can't edit this clue as it's fixed.");
     }
@@ -177,7 +177,7 @@ void PuzzleScreen::handleInput()
     break;
 
   case KEY_BACKSPACE:
-    currentPuzzle->setCellValue(0, currentCellY, currentCellX);
+    currentPuzzle->setCellValue(0, currentRow, currentColumn);
     break;
   }
 }
@@ -211,12 +211,12 @@ void PuzzleScreen::showHint()
   if (solvedPuzzle == nullptr)
     findSolution();
 
-  currentCellX = chosenCell.second;
-  currentCellY = chosenCell.first;
+  currentColumn = chosenCell.second;
+  currentRow = chosenCell.first;
 
-  int solvedCellValue = solvedPuzzle->getCellValue(currentCellY, currentCellX);
+  int solvedCellValue = solvedPuzzle->getCellValue(currentRow, currentColumn);
 
-  currentPuzzle->setFixedCellValue(solvedCellValue, currentCellY, currentCellX);
+  currentPuzzle->setFixedCellValue(solvedCellValue, currentRow, currentColumn);
 
   return;
 }
@@ -291,13 +291,13 @@ void PuzzleScreen::drawNumByPos(int num, int row, int col)
   int trueRow = (row / 3 + 2) + row + gridStartY;
   int trueCol = col / 3 + 2 + col * 3 + gridStartX;
 
-  if (row == currentCellY && col == currentCellX)
+  if (row == currentRow && col == currentColumn)
     highlightOn(HIGHLIGHT_COLOR_PAIR);
   if (num == 0)
     mvwprintw(window, trueRow, trueCol, "-");
   else
     mvwprintw(window, trueRow, trueCol, "%d", num);
-  if (row == currentCellY && col == currentCellX)
+  if (row == currentRow && col == currentColumn)
     highlightOff(HIGHLIGHT_COLOR_PAIR);
 }
 

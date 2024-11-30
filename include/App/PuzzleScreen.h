@@ -27,7 +27,7 @@ private:
   int helpStartY, helpStartX;
   int helpSizeY, helpSizeX;
 
-  int currentCellY, currentCellX;
+  int currentRow, currentColumn;
 
   bool messageDrawn;
 

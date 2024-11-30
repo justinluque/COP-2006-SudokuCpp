@@ -328,7 +328,7 @@ void PuzzleScreen::drawHelp()
   std::string Navigation = "Navigate using arrow keys";
   std::string sMsg = "[s] - Solve puzzle        ";
   std::string hMsg = "[h] - Give hint           ";
-  std::string cMsg = "[c] - Check guesses so far";
+  std::string cMsg = "[v] - Validate guesses    ";
   std::string rMsg = "[r] - Reset the puzzle    ";
   std::string mMsg = "[m] - Main Menu           ";
   std::string xMsg = "[x] - Exit                ";

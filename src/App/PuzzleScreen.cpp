@@ -321,7 +321,7 @@ void PuzzleScreen::drawHelp()
   std::string hMsg = "[h] - Give hint           ";
   std::string cMsg = "[c] - Check guesses so far";
   std::string rMsg = "[r] - Reset the puzzle    ";
-  std::string mMsg = "[m] - Return to Main Menu ";
+  std::string mMsg = "[m] - Main Menu           ";
   std::string xMsg = "[x] - Exit                ";
 
   mvwprintw(subHelpWindow, 1, (helpSizeX - title.size()) / 2, title.data());

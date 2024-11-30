@@ -299,10 +299,13 @@ void PuzzleScreen::drawSudokuNums()
 {
   box(window, 0, 0);
 
-  for (int i = 0; i < 9; i++)
+  for (int row = 0; row < 9; row++)
   {
-    for (int j = 0; j < 9; j++)
-      drawNumByPos(currentPuzzle->getCellValue(i, j), i, j);
+    for (int col = 0; col < 9; col++)
+    {
+      int cellValue = currentPuzzle->getCellValue(row, col);
+      drawNumByPos(cellValue, row, col);
+    }
   }
 }
 

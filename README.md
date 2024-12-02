@@ -6,7 +6,7 @@
 
 - https://github.com/msys2/MINGW-packages/issues/10312#issuecomment-1641416187
 
-  -DNCURSES_STATIC flag fixes ncurses being broken on msys2 (forces static linking)
+  -DNCURSES_STATIC flag forces static linking which fixes compilation for MSYS2 toolchains 
 
 - https://www.youtube.com/watch?v=3YiPdibiQHA
 

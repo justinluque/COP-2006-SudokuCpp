@@ -45,6 +45,10 @@ private:
 
   std::unique_ptr<SudokuPuzzle> solvedPuzzle;
 
+  bool windowIsOutOfBounds();
+
+  void drawResizePrompt();
+
   void showHint();
 
   void findSolution();

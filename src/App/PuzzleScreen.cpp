@@ -19,6 +19,15 @@ PuzzleScreen::PuzzleScreen(std::function<void(ScreenAction)> screenActionCallbac
   sizeY = 17;
   sizeX = 70;
 
+  if (windowIsOutOfBounds())
+  {
+    window = newwin(getmaxy(stdscr), getmaxx(stdscr), 0, 0); // Full-screen window for resize prompt
+    drawResizePrompt();
+    wgetch(window);
+    screenActionCallback(ScreenAction::QUIT);
+    return;
+  }
+
   // cellsize
   cellSize = 3;
 
@@ -195,6 +204,19 @@ void PuzzleScreen::handleInput()
     currentPuzzle->setCellValue(0, currentRow, currentColumn);
     break;
   }
+}
+
+bool PuzzleScreen::windowIsOutOfBounds()
+{
+  int maxY, maxX;
+  getmaxyx(stdscr, maxY, maxX); // Get the max size of the term
+
+  return sizeY > maxY || sizeX > maxX; // Compare the size to the size of our window
+}
+
+void PuzzleScreen::drawResizePrompt()
+{
+  mvwprintw(window, 0, 0, "Please resize the terminal and restart the program.");
 }
 
 void PuzzleScreen::showHint()

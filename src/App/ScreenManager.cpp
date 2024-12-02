@@ -13,13 +13,13 @@ ScreenManager::ScreenManager(AppState &appState) : mainAppState(appState)
 
 void ScreenManager::refreshCurrentScreen()
 {
-  if (currentScreen)
+  if (currentScreen && mainAppState == AppState::RUNNING)
     currentScreen->refreshScreen();
 }
 
 void ScreenManager::handleInput()
 {
-  if (currentScreen)
+  if (currentScreen && mainAppState == AppState::RUNNING)
     currentScreen->handleInput();
 }
 

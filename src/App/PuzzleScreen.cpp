@@ -180,6 +180,7 @@ void PuzzleScreen::handleInput()
     if (SudokuSolver::isSolved(currentPuzzle))
     {
       drawMessage("You've solved the puzzle! Well done!");
+      currentPuzzleSolved = true;
       currentPuzzle->lockPuzzle();
     }
 

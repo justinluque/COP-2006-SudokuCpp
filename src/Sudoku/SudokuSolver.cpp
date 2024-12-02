@@ -149,17 +149,25 @@ bool SudokuSolver::findSecondSolution(std::unique_ptr<SudokuPuzzle> &puzzle, int
 {
   if (row == 9)
   {
-    return false; // We’ve reached the end of the puzzle
+    // We've found a complete solution
+    if (foundSolution)
+    {
+      return true; // Second solution found
+    }
+    foundSolution = true; // First solution found
+    return false;         // Continue searching for a second solution
   }
 
   if (col >= 9)
   {
-    return findSecondSolution(puzzle, row + 1, 0, foundSolution); // Move to next row
+    // Move to the next row
+    return findSecondSolution(puzzle, row + 1, 0, foundSolution);
   }
 
   if (puzzle->getCellValue(row, col) > 0)
   {
-    return findSecondSolution(puzzle, row, col + 1, foundSolution); // Skip filled cells
+    // Skip prefilled cells
+    return findSecondSolution(puzzle, row, col + 1, foundSolution);
   }
 
   for (int digit = 1; digit <= 9; digit++)
@@ -168,22 +176,13 @@ bool SudokuSolver::findSecondSolution(std::unique_ptr<SudokuPuzzle> &puzzle, int
     {
       puzzle->setCellValue(digit, row, col);
 
-      // If we reach the end and we find the first solution, we flag it
-      if (recursiveAlgorithm(puzzle, row, col + 1))
+      if (findSecondSolution(puzzle, row, col + 1, foundSolution))
       {
-        if (foundSolution)
-        {
-          return true; // If we've already found a solution, and we find another, it's not unique
-        }
-
-        foundSolution = true; // Mark that we found one solution
-
-        // Now, try to "skip" the last solution by continuing the backtracking from here.
-        puzzle->setCellValue(0, row, col); // Undo the last assignment and continue
-        return findSecondSolution(puzzle, row, col + 1, foundSolution);
+        return true; // If a second solution is found, propagate the success
       }
 
-      puzzle->setCellValue(0, row, col); // Undo assignment
+      // Backtrack
+      puzzle->setCellValue(0, row, col);
     }
   }
 

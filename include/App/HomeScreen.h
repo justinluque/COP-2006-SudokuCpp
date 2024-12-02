@@ -20,9 +20,9 @@ private:
 
   WINDOW *window;
 
-  void drawMainWindow();
+  void drawOptions();
 
-  void drawConstantMainWindow();
+  void drawMainWindow();
 
   void drawResizePrompt();
 

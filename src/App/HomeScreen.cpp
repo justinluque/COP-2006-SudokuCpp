@@ -55,9 +55,9 @@ HomeScreen::HomeScreen(std::function<void(ScreenAction)> screenActionCallback) :
 
     keypad(window, true); /// Enable keypad inputs for our window
 
-    drawConstantMainWindow();
-
     drawMainWindow();
+
+    drawOptions();
   }
 
   // Display the window
@@ -71,7 +71,7 @@ HomeScreen::~HomeScreen()
 
 void HomeScreen::refreshScreen()
 {
-  drawMainWindow();
+  drawOptions();
 
   wrefresh(window); // Refresh the window
 }
@@ -128,7 +128,7 @@ void HomeScreen::handleInput()
   }
 }
 
-void HomeScreen::drawMainWindow()
+void HomeScreen::drawOptions()
 {
   const int optionsStartY = sizeY * 9 / 16;
 
@@ -141,11 +141,9 @@ void HomeScreen::drawMainWindow()
     if (currentOption == selectedOption)
       highlightOff();
   }
-
-  wrefresh(window);
 }
 
-void HomeScreen::drawConstantMainWindow()
+void HomeScreen::drawMainWindow()
 {
   box(window, 0, 0);
 

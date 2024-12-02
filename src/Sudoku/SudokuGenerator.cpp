@@ -74,7 +74,7 @@ std::unique_ptr<SudokuPuzzle> SudokuGenerator::generate(int clues)
     }
   }
 
-  setCluesToFixed(puzzle);
+  puzzle->lockOccupiedCells();
 
   return puzzle;
 }
@@ -112,16 +112,4 @@ bool SudokuGenerator::randomlyFillPuzzle(std::unique_ptr<SudokuPuzzle> &puzzle, 
   }
 
   return false; // If no valid number can be placed, backtrack
-}
-
-void SudokuGenerator::setCluesToFixed(std::unique_ptr<SudokuPuzzle> &puzzle)
-{
-  for (int row = 0; row < 9; row++)
-  {
-    for (int col = 0; col < 9; col++)
-    {
-      if (puzzle->getCellValue(row, col) != 0)
-        puzzle->setFixed(true, row, col);
-    }
-  }
 }

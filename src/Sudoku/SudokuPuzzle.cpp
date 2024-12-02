@@ -93,6 +93,18 @@ void SudokuPuzzle::setFixed(bool fixed, int row, int col)
   fixedGrid[row][col] = fixed;
 }
 
+void SudokuPuzzle::lockOccupiedCells()
+{
+  for (int row = 0; row < 9; row++)
+  {
+    for (int col = 0; col < 9; col++)
+    {
+      if (getCellValue(row, col) != 0)
+        setFixed(true, row, col);
+    }
+  }
+}
+
 bool SudokuPuzzle::getFixed(int row, int col) const
 {
   if (row < 0 || row > 9)

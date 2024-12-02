@@ -27,6 +27,8 @@ public:
 
   void setFixed(bool fixed, int row, int col);
 
+  void lockOccupiedCells();
+
   void lockPuzzle();
 
   void unlockPuzzle();

@@ -167,6 +167,12 @@ void PuzzleScreen::handleInput()
   case '7':
   case '8':
   case '9':
+    if (currentPuzzleSolved)
+    {
+      drawMessage("Cannot edit an already solved puzzle.");
+      break;
+    }
+
     currentPuzzle->setCellValue(key - '0', currentRow, currentColumn);
 
     badGuesses[currentRow][currentColumn] = false;

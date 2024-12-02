@@ -46,6 +46,8 @@ HomeScreen::HomeScreen(std::function<void(ScreenAction)> screenActionCallback) :
   {
     window = newwin(screenY, screenX, 0, 0); // Full-screen window for resize prompt
     drawResizePrompt();
+    wgetch(window);
+    screenActionCallback(ScreenAction::QUIT);
   }
   else
   {

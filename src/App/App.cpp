@@ -10,6 +10,8 @@ App::App() : screenManager(nullptr)
 {
   initializeCurses();
 
+  currentState = AppState::RUNNING;
+
   screenManager = std::make_unique<ScreenManager>(currentState);
 
   screenManager->switchWindow(AppScreen::HOME);
@@ -22,8 +24,6 @@ App::~App()
 
 void App::run()
 {
-  currentState = AppState::RUNNING;
-
   while (currentState == AppState::RUNNING)
   {
     screenManager->refreshCurrentScreen();

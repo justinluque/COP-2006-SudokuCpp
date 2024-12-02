@@ -1,3 +1,10 @@
+# Requirements
+
+- C++ Compiler with C++20 support
+- Ncurses library and headers
+- Windows or MacOS
+- A terminal with color support
+
 # References
 
 - https://www.eso.org/~ndelmott/ascii.html

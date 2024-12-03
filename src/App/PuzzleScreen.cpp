@@ -142,23 +142,47 @@ void PuzzleScreen::handleInput()
 
   case 's':
   {
+    if (currentPuzzleSolved)
+    {
+      drawMessage("The puzzle is already solved.");
+      break;
+    }
+
     showSolution();
     break;
   }
 
   case 'h':
   {
+    if (currentPuzzleSolved)
+    {
+      drawMessage("The puzzle is already solved.");
+      break;
+    }
+
     showHint();
     break;
   }
 
   case 'v':
   {
+    if (currentPuzzleSolved)
+    {
+      drawMessage("Cannot validate. The puzzle is already solved.");
+      break;
+    }
+
     validateGuesses();
     break;
   }
 
   case 'r':
+    if (currentPuzzleSolved)
+    {
+      drawMessage("Cannot reset. The puzzle is already solved.");
+      break;
+    }
+
     currentPuzzle->resetToFixedCells();
     break;
 

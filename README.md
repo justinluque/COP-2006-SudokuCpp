@@ -11,7 +11,7 @@
 
 To compile the project on Windows, you will need build tools that give you access to Ncurses and its headers as well as an update version of gcc. The easiest way to get access to these, in my opinion was through [MSYS2](https://www.msys2.org/) though there are most likely other ways as well. If you are attempting to compile this project using the Makefile on a toolchain other than UCRT64 MSYS2, you will most likely have to alter the Makefile, specifically the include directories of CXXFLAGS in Makefile.win.
 
-1. Install [MSYS2](https://www.msys2.org/)
+1. Install [MSYS2](https://www.msys2.org/) (The Windows Makefile is set up for specifically the UCRT64 environment)
 2. Install dependencies
 ```
 pacamn -S ncurses-devel ncurses base-devel make mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-make

@@ -226,6 +226,9 @@ void PuzzleScreen::handleInput()
 
   case KEY_BACKSPACE:
     currentPuzzle->setCellValue(0, currentRow, currentColumn);
+
+    badGuesses[currentRow][currentColumn] = false;
+
     break;
   }
 }
